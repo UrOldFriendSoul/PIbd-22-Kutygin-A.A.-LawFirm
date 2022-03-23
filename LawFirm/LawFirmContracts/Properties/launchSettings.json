@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "LawFirmContracts": {
+      "commandName": "Project"
+    },
+    "Профиль 1": {
+      "commandName": "Executable"
+    },
+    "LawFirmView": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\kutyg\\source\\repos\\LawFirm\\LawFirmView",
+      "authenticationMode": "Windows"
+    }
+  }
+}
