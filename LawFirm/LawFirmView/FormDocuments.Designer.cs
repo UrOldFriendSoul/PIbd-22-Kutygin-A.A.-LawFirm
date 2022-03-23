@@ -33,9 +33,6 @@
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.docName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.docAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,33 +79,11 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.docName,
-            this.docAmount});
             this.dataGridView.Location = new System.Drawing.Point(12, 12);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(570, 426);
             this.dataGridView.TabIndex = 8;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // docName
-            // 
-            this.docName.HeaderText = "Название";
-            this.docName.Name = "docName";
-            this.docName.Width = 400;
-            // 
-            // docAmount
-            // 
-            this.docAmount.HeaderText = "Количество";
-            this.docAmount.Name = "docAmount";
-            this.docAmount.Width = 124;
             // 
             // FormDocuments
             // 
@@ -135,8 +110,5 @@
         private Button buttonUpd;
         private Button buttonAdd;
         private DataGridView dataGridView;
-        private DataGridViewTextBoxColumn id;
-        private DataGridViewTextBoxColumn docName;
-        private DataGridViewTextBoxColumn docAmount;
     }
 }
