@@ -7,15 +7,22 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
 	  <LangVersion>preview</LangVersion>
+	  <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="6.0.1" />
     <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LawFirmBusinessLogic\LawFirmBusinessLogic.csproj" />
+    <ProjectReference Include="..\LawFirmDataBaseImplement\LawFirmDatabaseImplement.csproj" />
     <ProjectReference Include="..\LawFirmFileImplement\LawFirmFileImplement.csproj" />
     <ProjectReference Include="..\LawFirmListImplement\LawFirmListImplement.csproj" />
   </ItemGroup>
