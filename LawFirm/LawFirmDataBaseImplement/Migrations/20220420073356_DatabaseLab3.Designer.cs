@@ -4,14 +4,16 @@ using LawFirmDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LawFirmDatabaseImplement.Migrations
 {
     [DbContext(typeof(LawFirmDatabase))]
-    partial class LawFirmDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20220420073356_DatabaseLab3")]
+    partial class DatabaseLab3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,21 +134,13 @@ namespace LawFirmDatabaseImplement.Migrations
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Order", b =>
                 {
-<<<<<<< Updated upstream
-                    b.HasOne("LawFirmDatabaseImplement.Models.Document", "document")
-=======
                     b.HasOne("LawFirmDatabaseImplement.Models.Document", "Document")
->>>>>>> Stashed changes
                         .WithMany("Orders")
                         .HasForeignKey("DocumentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< Updated upstream
-                    b.Navigation("document");
-=======
                     b.Navigation("Document");
->>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Component", b =>

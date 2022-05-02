@@ -18,17 +18,28 @@ namespace LawFirmView
     {
         private readonly IDocumentLogic logicDocument;
         private readonly IOrderLogic logicOrder;
+<<<<<<< Updated upstream
         public FormCreateOrder(IDocumentLogic _logicD, IOrderLogic _logicO)
         {
             InitializeComponent();
             logicDocument = _logicD;
             logicOrder = _logicO;
+=======
+        public FormCreateOrder(IDocumentLogic logicD, IOrderLogic logicO)
+        {
+            InitializeComponent();
+            logicDocument = logicD;
+            logicOrder = logicO;
+>>>>>>> Stashed changes
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
            try
             {
+=======
+>>>>>>> Stashed changes
                 List<DocumentViewModel> list = logicDocument.Read(null);
                 if (list != null)
                 {
@@ -37,6 +48,7 @@ namespace LawFirmView
                     comboBoxDocument.DataSource = list;
                     comboBoxDocument.SelectedItem = null;
                 }
+<<<<<<< Updated upstream
             }
             catch (Exception ex)
             {
@@ -48,13 +60,25 @@ namespace LawFirmView
         {
             if (comboBoxDocument.SelectedValue != null &&
            !string.IsNullOrEmpty(textBoxCount.Text))
+=======
+        }
+        private void CalcSum()
+        {
+            if (comboBoxDocument.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
+>>>>>>> Stashed changes
             {
                 try
                 {
                     int id = Convert.ToInt32(comboBoxDocument.SelectedValue);
+<<<<<<< Updated upstream
                     DocumentViewModel product = logicDocument.Read(new DocumentBindingModel{Id = id})?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+=======
+                    DocumentViewModel document = logicDocument.Read(new DocumentBindingModel{Id = id})?[0];
+                    int count = Convert.ToInt32(textBoxCount.Text);
+                    textBoxSum.Text = (count * document?.Price ?? 0).ToString();
+>>>>>>> Stashed changes
                 }
                 catch (Exception ex)
                 {
@@ -63,6 +87,7 @@ namespace LawFirmView
                 }
             }
         }
+<<<<<<< Updated upstream
         private void TextBoxCount_TextChanged(object sender, EventArgs e)
         {
             CalcSum();
@@ -72,6 +97,16 @@ namespace LawFirmView
             CalcSum();
         }
 
+=======
+        private void comboBoxDocument_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalcSum();
+        }
+        private void TextBoxCount_TextChanged(object sender, EventArgs e)
+        {
+            CalcSum();
+        }
+>>>>>>> Stashed changes
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -107,5 +142,9 @@ namespace LawFirmView
             DialogResult = DialogResult.Cancel;
             Close();
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     }
 }

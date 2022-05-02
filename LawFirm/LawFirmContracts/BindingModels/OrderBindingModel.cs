@@ -18,6 +18,11 @@ namespace LawFirmContracts.BindingModels
         public OrderStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+<<<<<<< Updated upstream
+=======
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
+>>>>>>> Stashed changes
 
     }
 }

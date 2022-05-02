@@ -2,6 +2,11 @@ using LawFirmBusinessLogic.BusinessLogics;
 using LawFirmContracts.BusinessLogicContracts;
 using LawFirmContracts.StorageContracts;
 using LawFirmDatabaseImplement.Implements;
+<<<<<<< Updated upstream
+=======
+using LawFirmBusinessLogic.OfficePackage;
+using LawFirmBusinessLogic.OfficePackage.Implements;
+>>>>>>> Stashed changes
 using LawFirmContracts.BindingModels;
 using LawFirmContracts.Enums;
 using System;
@@ -42,6 +47,13 @@ namespace LawFirmView
             currentContainer.RegisterType<IComponentLogic, ComponentLogic> (new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic> (new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IDocumentLogic, DocumentLogic> (new HierarchicalLifetimeManager());
+<<<<<<< Updated upstream
+=======
+            currentContainer.RegisterType<IReportLogic, ReportLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToWord, SaveToWord>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToExcel, SaveToExcel>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToPdf, SaveToPdf>(new HierarchicalLifetimeManager());
+>>>>>>> Stashed changes
             return currentContainer;
         }
 

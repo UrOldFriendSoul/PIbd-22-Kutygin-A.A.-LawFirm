@@ -64,8 +64,12 @@ namespace LawFirmView
             this.comboBoxDocument.Name = "comboBoxDocument";
             this.comboBoxDocument.Size = new System.Drawing.Size(273, 23);
             this.comboBoxDocument.TabIndex = 3;
+<<<<<<< Updated upstream
             this.comboBoxDocument.TextChanged += new System.EventHandler(this.ComboBoxDocument_SelectedIndexChanged);
 
+=======
+            this.comboBoxDocument.SelectedIndexChanged += new System.EventHandler(this.comboBoxDocument_SelectedIndexChanged);
+>>>>>>> Stashed changes
             // 
             // textBoxCount
             // 
@@ -106,7 +110,10 @@ namespace LawFirmView
             // 
             // textBoxSum
             // 
+<<<<<<< Updated upstream
             this.textBoxSum.Enabled = false;
+=======
+>>>>>>> Stashed changes
             this.textBoxSum.Location = new System.Drawing.Point(94, 78);
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.Size = new System.Drawing.Size(272, 23);

@@ -10,9 +10,15 @@ namespace LawFirmBusinessLogic.BusinessLogics
     {
         private readonly IDocumentStorage _documentStorage;
 
+<<<<<<< Updated upstream
         public DocumentLogic(IDocumentStorage furnitureStorage)
         {
             _documentStorage = furnitureStorage;
+=======
+        public DocumentLogic(IDocumentStorage documentStorage)
+        {
+            _documentStorage = documentStorage;
+>>>>>>> Stashed changes
         }
 
         public List<DocumentViewModel> Read(DocumentBindingModel model)

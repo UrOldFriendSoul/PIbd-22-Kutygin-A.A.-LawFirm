@@ -14,7 +14,11 @@ namespace LawFirmContracts.ViewModels
     {
         public int Id { get; set; }
         public int DocumentId { get; set; }
+<<<<<<< Updated upstream
         [DisplayName("Изделие")]
+=======
+        [DisplayName("Документ")]
+>>>>>>> Stashed changes
         public string DocumentName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }
