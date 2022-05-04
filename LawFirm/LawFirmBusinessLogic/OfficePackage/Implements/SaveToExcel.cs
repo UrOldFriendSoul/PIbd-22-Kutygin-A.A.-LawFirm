@@ -1,4 +1,7 @@
-﻿using LawFirmBusinessLogic.OfficePackage.HelperEnums;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Office2010.Excel;
@@ -7,7 +10,6 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
 
-
 namespace LawFirmBusinessLogic.OfficePackage.Implements
 {
     public class SaveToExcel : AbstractSaveToExcel
@@ -15,10 +17,6 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
         private SpreadsheetDocument _spreadsheetDocument;
         private SharedStringTablePart _shareStringPart;
         private Worksheet _worksheet;
-        /// <summary>
-        /// Настройка стилей для файла
-        /// </summary>
-        /// <param name="workbookpart"></param>
         private static void CreateStyles(WorkbookPart workbookpart)
         {
             var sp = workbookpart.AddNewPart<WorkbookStylesPart>();
@@ -39,8 +37,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             fontTitle.Append(new FontSize() { Val = 14D });
             fontTitle.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
-                Theme
-           = 1U
+                Theme = 1U
             });
             fontTitle.Append(new FontName() { Val = "Times New Roman" });
             fontTitle.Append(new FontFamilyNumbering() { Val = 2 });
@@ -53,8 +50,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             var fill2 = new Fill();
             fill2.Append(new PatternFill() { PatternType = PatternValues.Gray125 });
             fills.Append(fill1);
-            fills.Append(fill2);
-            var borders = new Borders() { Count = 2U };
+            fills.Append(fill2); var borders = new Borders() { Count = 2U };
             var borderNoBorder = new Border();
             borderNoBorder.Append(new LeftBorder());
             borderNoBorder.Append(new RightBorder());
@@ -111,8 +107,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             var cellFormatFontAndBorder = new CellFormat()
             {
                 NumberFormatId = 0U,
-                FontId
-           = 0U,
+                FontId = 0U,
                 FillId = 0U,
                 BorderId = 1U,
                 FormatId = 0U,
@@ -128,11 +123,9 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                 FormatId = 0U,
                 Alignment = new Alignment()
                 {
-                    Vertical =
-           VerticalAlignmentValues.Center,
+                    Vertical = VerticalAlignmentValues.Center,
                     WrapText = true,
-                    Horizontal =
-           HorizontalAlignmentValues.Center
+                    Horizontal = HorizontalAlignmentValues.Center
                 },
                 ApplyFont = true
             };
@@ -144,39 +137,34 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             {
                 Name = "Normal",
                 FormatId = 0U,
-                BuiltinId
-           = 0U
+                BuiltinId = 0U
             });
             var differentialFormats = new
            DocumentFormat.OpenXml.Office2013.Excel.DifferentialFormats()
-            { Count = 0U };
-            var tableStyles = new TableStyles()
+            { Count = 0U }; var tableStyles = new TableStyles()
             {
                 Count = 0U,
-                DefaultTableStyle =
-"TableStyleMedium2",
+                DefaultTableStyle = "TableStyleMedium2",
                 DefaultPivotStyle = "PivotStyleLight16"
             };
             var stylesheetExtensionList = new StylesheetExtensionList();
             var stylesheetExtension1 = new StylesheetExtension()
             {
-                Uri = "{EB79DEF2-80B8-43e5 - 95BD - 54CBDDF9020C}" };
- stylesheetExtension1.AddNamespaceDeclaration("x14",
-"http://schemas.microsoft.com/office/spreadsheetml/2009/9/main");
+                Uri = "{EB79DEF2-80B8-43e5 - 95BD - 54CBDDF9020C }" 
+            };
+            stylesheetExtension1.AddNamespaceDeclaration("x14", "http://schemas.microsoft.com/office/spreadsheetml/2009/9/main");
             stylesheetExtension1.Append(new SlicerStyles()
             {
-                DefaultSlicerStyle =
-           "SlicerStyleLight1"
+                DefaultSlicerStyle = "SlicerStyleLight1"
             });
             var stylesheetExtension2 = new StylesheetExtension()
             {
-                Uri = "{9260A510-F301-46a8 - 8635 - F512D64BE5F5}" };
- stylesheetExtension2.AddNamespaceDeclaration("x15",
-"http://schemas.microsoft.com/office/spreadsheetml/2010/11/main");
+                Uri = "{9260A510-F301-46a8 - 8635 - F512D64BE5F5}" 
+            };
+            stylesheetExtension2.AddNamespaceDeclaration("x15", "http://schemas.microsoft.com/office/spreadsheetml/2010/11/main");
             stylesheetExtension2.Append(new TimelineStyles()
             {
-                DefaultTimelineStyle =
-           "TimeSlicerStyleLight1"
+                DefaultTimelineStyle = "TimeSlicerStyleLight1"
             });
             stylesheetExtensionList.Append(stylesheetExtension1);
             stylesheetExtensionList.Append(stylesheetExtension2);
@@ -190,11 +178,6 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             sp.Stylesheet.Append(tableStyles);
             sp.Stylesheet.Append(stylesheetExtensionList);
         }
-        /// <summary>
-        /// Получение номера стиля из типа
-        /// </summary>
-        /// <param name="styleInfo"></param>
-        /// <returns></returns>
         private static uint GetStyleValue(ExcelStyleInfoType styleInfo)
         {
             return styleInfo switch
@@ -216,9 +199,8 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             // Получаем/создаем хранилище текстов для книги
             _shareStringPart =
            _spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Any()
-            ?
-            _spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
- : _spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+            ? _spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+            : _spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
             // Создаем SharedStringTable, если его нет
             if (_shareStringPart.SharedStringTable == null)
             {
@@ -273,8 +255,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                     if (string.Compare(rowCell.CellReference.Value,
                    excelParams.CellReference, true) > 0)
                     {
-                        refCell = rowCell;
-                        break;
+                        refCell = rowCell; break;
                     }
                 }
                 var newCell = new Cell() { CellReference = excelParams.CellReference };

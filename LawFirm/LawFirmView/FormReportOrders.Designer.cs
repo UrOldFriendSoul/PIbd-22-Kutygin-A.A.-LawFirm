@@ -1,4 +1,5 @@
-﻿namespace LawFirmView
+﻿
+namespace LawFirmView
 {
     partial class FormReportOrders
     {
@@ -28,103 +29,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
-            this.textBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonCreate = new System.Windows.Forms.Button();
-            this.buttonCreatePDF = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel = new System.Windows.Forms.Panel();
+            this.labelTo = new System.Windows.Forms.Label();
+            this.labelFrom = new System.Windows.Forms.Label();
+            this.buttonToPdf = new System.Windows.Forms.Button();
+            this.buttonForm = new System.Windows.Forms.Button();
+            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dateTimePickerFrom
-            // 
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(35, 12);
-            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerFrom.TabIndex = 0;
-            // 
-            // dateTimePickerTo
-            // 
-            this.dateTimePickerTo.Location = new System.Drawing.Point(274, 12);
-            this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerTo.TabIndex = 1;
-            // 
-            // textBox
-            // 
-            this.textBox.Location = new System.Drawing.Point(12, 12);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(17, 23);
-            this.textBox.TabIndex = 2;
-            this.textBox.Text = "C";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(241, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(27, 23);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "по";
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(500, 12);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(102, 23);
-            this.buttonCreate.TabIndex = 4;
-            this.buttonCreate.Text = "Сформировать";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
-            // 
-            // buttonCreatePDF
-            // 
-            this.buttonCreatePDF.Location = new System.Drawing.Point(713, 14);
-            this.buttonCreatePDF.Name = "buttonCreatePDF";
-            this.buttonCreatePDF.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreatePDF.TabIndex = 5;
-            this.buttonCreatePDF.Text = "в PDF";
-            this.buttonCreatePDF.UseVisualStyleBackColor = true;
-            this.buttonCreatePDF.Click += new System.EventHandler(this.buttonCreatePDF_Click);
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.labelTo);
+            this.panel.Controls.Add(this.labelFrom);
+            this.panel.Controls.Add(this.buttonToPdf);
+            this.panel.Controls.Add(this.buttonForm);
+            this.panel.Controls.Add(this.dateTimePickerTo);
+            this.panel.Controls.Add(this.dateTimePickerFrom);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(800, 378);
-            this.panel.TabIndex = 6;
+            this.panel.Size = new System.Drawing.Size(1441, 54);
+            this.panel.TabIndex = 0;
+            // 
+            // labelTo
+            // 
+            this.labelTo.AutoSize = true;
+            this.labelTo.Location = new System.Drawing.Point(271, 16);
+            this.labelTo.Name = "labelTo";
+            this.labelTo.Size = new System.Drawing.Size(33, 25);
+            this.labelTo.TabIndex = 5;
+            this.labelTo.Text = "по";
+            // 
+            // labelFrom
+            // 
+            this.labelFrom.AutoSize = true;
+            this.labelFrom.Location = new System.Drawing.Point(10, 15);
+            this.labelFrom.Name = "labelFrom";
+            this.labelFrom.Size = new System.Drawing.Size(23, 25);
+            this.labelFrom.TabIndex = 4;
+            this.labelFrom.Text = "C";
+            // 
+            // buttonToPdf
+            // 
+            this.buttonToPdf.Location = new System.Drawing.Point(1213, 11);
+            this.buttonToPdf.Name = "buttonToPdf";
+            this.buttonToPdf.Size = new System.Drawing.Size(192, 34);
+            this.buttonToPdf.TabIndex = 3;
+            this.buttonToPdf.Text = "В PDF";
+            this.buttonToPdf.UseVisualStyleBackColor = true;
+            this.buttonToPdf.Click += new System.EventHandler(this.buttonToPdf_Click);
+            // 
+            // buttonForm
+            // 
+            this.buttonForm.Location = new System.Drawing.Point(570, 10);
+            this.buttonForm.Name = "buttonForm";
+            this.buttonForm.Size = new System.Drawing.Size(178, 34);
+            this.buttonForm.TabIndex = 2;
+            this.buttonForm.Text = "Сформировать";
+            this.buttonForm.UseVisualStyleBackColor = true;
+            this.buttonForm.Click += new System.EventHandler(this.buttonForm_Click);
+            // 
+            // dateTimePickerTo
+            // 
+            this.dateTimePickerTo.Location = new System.Drawing.Point(310, 11);
+            this.dateTimePickerTo.Name = "dateTimePickerTo";
+            this.dateTimePickerTo.Size = new System.Drawing.Size(217, 31);
+            this.dateTimePickerTo.TabIndex = 1;
+            // 
+            // dateTimePickerFrom
+            // 
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(39, 11);
+            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(217, 31);
+            this.dateTimePickerFrom.TabIndex = 0;
             // 
             // FormReportOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buttonCreatePDF);
-            this.Controls.Add(this.buttonCreate);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox);
-            this.Controls.Add(this.dateTimePickerTo);
-            this.Controls.Add(this.dateTimePickerFrom);
+            this.ClientSize = new System.Drawing.Size(1441, 537);
             this.Controls.Add(this.panel);
             this.Name = "FormReportOrders";
-            this.Text = "FormReportOrders";
-            //this.Load += new System.EventHandler(this.FormReportOrders_Load);
+            this.Text = "Заказы";
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DateTimePicker dateTimePickerFrom;
-        private DateTimePicker dateTimePickerTo;
-        private TextBox textBox;
-        private TextBox textBox1;
-        private Button buttonCreate;
-        private Button buttonCreatePDF;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Panel panel;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Label labelTo;
+        private System.Windows.Forms.Label labelFrom;
+        private System.Windows.Forms.Button buttonToPdf;
+        private System.Windows.Forms.Button buttonForm;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTo;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
     }
 }

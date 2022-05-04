@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using LawFirmContracts.BindingModels;
 using LawFirmContracts.ViewModels;
 
-
-namespace LawFirmContracts.BusinessLogicContracts
+namespace LawFirmContracts.BusinessLogicsContracts
 {
     public interface IOrderLogic
     {
@@ -17,6 +13,5 @@ namespace LawFirmContracts.BusinessLogicContracts
         void TakeOrderInWork(ChangeStatusBindingModel model);
         void FinishOrder(ChangeStatusBindingModel model);
         void DeliveryOrder(ChangeStatusBindingModel model);
-
     }
 }

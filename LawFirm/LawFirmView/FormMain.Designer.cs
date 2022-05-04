@@ -29,137 +29,40 @@ namespace LawFirmView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItemComponents = new System.Windows.Forms.ToolStripMenuItem();
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments = new System.Windows.Forms.ToolStripMenuItem();
-<<<<<<< Updated upstream
-=======
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ComponentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ComponentDocumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
->>>>>>> Stashed changes
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
             this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
-            this.buttonRef = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemComponents = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDocuments = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemFurnitureList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemFurnituresComponents = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.toolStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 33);
+            this.dataGridView.Location = new System.Drawing.Point(0, 36);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(615, 405);
-            this.dataGridView.TabIndex = 0;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-<<<<<<< Updated upstream
-            this.toolStripDropDownButton1});
-=======
-            this.toolStripDropDownButton1,
-            this.toolStripDropDownButton2});
->>>>>>> Stashed changes
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(923, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton1
-            // 
-<<<<<<< Updated upstream
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-=======
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
->>>>>>> Stashed changes
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemComponents,
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-<<<<<<< Updated upstream
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-=======
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(95, 22);
-            this.toolStripDropDownButton1.Text = "Справочники";
->>>>>>> Stashed changes
-            // 
-            // toolStripMenuItemComponents
-            // 
-            this.toolStripMenuItemComponents.Name = "toolStripMenuItemComponents";
-            this.toolStripMenuItemComponents.Size = new System.Drawing.Size(145, 22);
-            this.toolStripMenuItemComponents.Text = "Компоненты";
-<<<<<<< Updated upstream
-            this.toolStripMenuItemComponents.Click += new System.EventHandler(this.КомпонентыToolStripMenuItemComponents_Click);
-            // 
-            // документыtoollStripMenuItem2ToolStripMenuItemDocuments
-            // 
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Name = "документыtoollStripMenuItem2ToolStripMenuItemDocuments";
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Size = new System.Drawing.Size(145, 22);
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Text = "Документы";
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Click += new System.EventHandler(this.ДокументыToollStripMenuItemDocuments_Click);
-=======
-            this.toolStripMenuItemComponents.Click += new System.EventHandler(this.ToolStripMenuItemComponents_Click);
-            // 
-            // документыtoollStripMenuItem2ToolStripMenuItemDocuments
-            // 
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Name = "toolStripMenuItemDocuments";
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Size = new System.Drawing.Size(145, 22);
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Text = "Документы";
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Click += new System.EventHandler(this.ToolStripMenuItemDocuments_Click);
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ComponentsToolStripMenuItem,
-            this.ComponentDocumentsToolStripMenuItem,
-            this.OrdersToolStripMenuItem});
-            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(61, 22);
-            this.toolStripDropDownButton2.Text = "Отчеты";
-            // 
-            // ComponentsToolStripMenuItem
-            // 
-            this.ComponentsToolStripMenuItem.Name = "ComponentsToolStripMenuItem";
-            this.ComponentsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.ComponentsToolStripMenuItem.Text = "Список компонентов ";
-            this.ComponentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
-            // 
-            // ComponentDocumentsToolStripMenuItem
-            // 
-            this.ComponentDocumentsToolStripMenuItem.Name = "ComponentDocumentsToolStripMenuItem";
-            this.ComponentDocumentsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.ComponentDocumentsToolStripMenuItem.Text = "Компоненты по изделиям";
-            this.ComponentDocumentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentDocumentsToolStripMenuItem_Click);
-            // 
-            // OrdersToolStripMenuItem
-            // 
-            this.OrdersToolStripMenuItem.Name = "OrdersToolStripMenuItem";
-            this.OrdersToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.OrdersToolStripMenuItem.Text = "Список заказов";
-            this.OrdersToolStripMenuItem.Click += new System.EventHandler(this.OrdersToolStripMenuItem_Click);
->>>>>>> Stashed changes
+            this.dataGridView.RowHeadersWidth = 62;
+            this.dataGridView.RowTemplate.Height = 33;
+            this.dataGridView.Size = new System.Drawing.Size(963, 510);
+            this.dataGridView.TabIndex = 1;
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(661, 81);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(1023, 68);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
-            this.buttonCreateOrder.Size = new System.Drawing.Size(226, 23);
+            this.buttonCreateOrder.Size = new System.Drawing.Size(257, 44);
             this.buttonCreateOrder.TabIndex = 2;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
@@ -167,9 +70,9 @@ namespace LawFirmView
             // 
             // buttonTakeOrderInWork
             // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(661, 149);
+            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(1023, 170);
             this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
-            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(226, 23);
+            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(257, 44);
             this.buttonTakeOrderInWork.TabIndex = 3;
             this.buttonTakeOrderInWork.Text = "Отдать на выполнение";
             this.buttonTakeOrderInWork.UseVisualStyleBackColor = true;
@@ -177,9 +80,9 @@ namespace LawFirmView
             // 
             // buttonOrderReady
             // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(661, 221);
+            this.buttonOrderReady.Location = new System.Drawing.Point(1023, 278);
             this.buttonOrderReady.Name = "buttonOrderReady";
-            this.buttonOrderReady.Size = new System.Drawing.Size(226, 23);
+            this.buttonOrderReady.Size = new System.Drawing.Size(257, 44);
             this.buttonOrderReady.TabIndex = 4;
             this.buttonOrderReady.Text = "Заказ готов";
             this.buttonOrderReady.UseVisualStyleBackColor = true;
@@ -187,73 +90,128 @@ namespace LawFirmView
             // 
             // buttonIssuedOrder
             // 
-            this.buttonIssuedOrder.Location = new System.Drawing.Point(661, 284);
+            this.buttonIssuedOrder.Location = new System.Drawing.Point(1023, 381);
             this.buttonIssuedOrder.Name = "buttonIssuedOrder";
-            this.buttonIssuedOrder.Size = new System.Drawing.Size(226, 23);
+            this.buttonIssuedOrder.Size = new System.Drawing.Size(257, 44);
             this.buttonIssuedOrder.TabIndex = 5;
             this.buttonIssuedOrder.Text = "Заказ выдан";
             this.buttonIssuedOrder.UseVisualStyleBackColor = true;
             this.buttonIssuedOrder.Click += new System.EventHandler(this.buttonIssuedOrder_Click);
             // 
-            // buttonRef
+            // buttonRefresh
             // 
-            this.buttonRef.Location = new System.Drawing.Point(661, 345);
-            this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(226, 23);
-            this.buttonRef.TabIndex = 6;
-            this.buttonRef.Text = "Обновить список";
-            this.buttonRef.UseVisualStyleBackColor = true;
-            this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
+            this.buttonRefresh.Location = new System.Drawing.Point(1023, 485);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(257, 44);
+            this.buttonRefresh.TabIndex = 6;
+            this.buttonRefresh.Text = "Обновить список";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemHelp,
+            this.toolStripMenuItemReports});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1324, 33);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItemHelp
+            // 
+            this.toolStripMenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemComponents,
+            this.toolStripMenuItemDocuments});
+            this.toolStripMenuItemHelp.Name = "toolStripMenuItemHelp";
+            this.toolStripMenuItemHelp.Size = new System.Drawing.Size(139, 29);
+            this.toolStripMenuItemHelp.Text = "Справочники";
+            // 
+            // toolStripMenuItemComponents
+            // 
+            this.toolStripMenuItemComponents.Name = "toolStripMenuItemComponents";
+            this.toolStripMenuItemComponents.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItemComponents.Text = "Компоненты";
+            this.toolStripMenuItemComponents.Click += new System.EventHandler(this.toolStripMenuItemComponents_Click);
+            // 
+            // toolStripMenuItemDocuments
+            // 
+            this.toolStripMenuItemDocuments.Name = "toolStripMenuItemDocuments";
+            this.toolStripMenuItemDocuments.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItemDocuments.Text = "Документы";
+            this.toolStripMenuItemDocuments.Click += new System.EventHandler(this.toolStripMenuItemDocument_Click);
+            // 
+            // toolStripMenuItemReports
+            // 
+            this.toolStripMenuItemReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemFurnitureList,
+            this.toolStripMenuItemFurnituresComponents,
+            this.toolStripMenuItemOrderList});
+            this.toolStripMenuItemReports.Name = "toolStripMenuItemReports";
+            this.toolStripMenuItemReports.Size = new System.Drawing.Size(88, 29);
+            this.toolStripMenuItemReports.Text = "Отчеты";
+            // 
+            // toolStripMenuItemFurnitureList
+            // 
+            this.toolStripMenuItemFurnitureList.Name = "toolStripMenuItemFurnitureList";
+            this.toolStripMenuItemFurnitureList.Size = new System.Drawing.Size(353, 34);
+            this.toolStripMenuItemFurnitureList.Text = "Список документов";
+            this.toolStripMenuItemFurnitureList.Click += new System.EventHandler(this.toolStripMenuItemDocumentList_Click);
+            // 
+            // toolStripMenuItemFurnituresComponents
+            // 
+            this.toolStripMenuItemFurnituresComponents.Name = "toolStripMenuItemFurnituresComponents";
+            this.toolStripMenuItemFurnituresComponents.Size = new System.Drawing.Size(353, 34);
+            this.toolStripMenuItemFurnituresComponents.Text = "Документы и их компоненты";
+            this.toolStripMenuItemFurnituresComponents.Click += new System.EventHandler(this.toolStripMenuItemDocumentsComponents_Click);
+            // 
+            // toolStripMenuItemOrderList
+            // 
+            this.toolStripMenuItemOrderList.Name = "toolStripMenuItemOrderList";
+            this.toolStripMenuItemOrderList.Size = new System.Drawing.Size(353, 34);
+            this.toolStripMenuItemOrderList.Text = "Список заказов";
+            this.toolStripMenuItemOrderList.Click += new System.EventHandler(this.toolStripMenuItemOrderList_Click);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 450);
-<<<<<<< Updated upstream
-=======
-            this.Controls.Add(this.dataGridView);
->>>>>>> Stashed changes
-            this.Controls.Add(this.buttonRef);
+            this.ClientSize = new System.Drawing.Size(1324, 542);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonIssuedOrder);
             this.Controls.Add(this.buttonOrderReady);
             this.Controls.Add(this.buttonTakeOrderInWork);
             this.Controls.Add(this.buttonCreateOrder);
-            this.Controls.Add(this.toolStrip1);
-<<<<<<< Updated upstream
             this.Controls.Add(this.dataGridView);
-=======
->>>>>>> Stashed changes
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Составление документов";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DataGridView dataGridView;
-        private ToolStrip toolStrip1;
-        private ToolStripDropDownButton toolStripDropDownButton1;
-        private ToolStripMenuItem toolStripMenuItemComponents;
-        private Button buttonCreateOrder;
-        private Button buttonTakeOrderInWork;
-        private Button buttonOrderReady;
-        private Button buttonIssuedOrder;
-        private Button buttonRef;
-        private ToolStripMenuItem документыtoollStripMenuItem2ToolStripMenuItemDocuments;
-<<<<<<< Updated upstream
-=======
-        private ToolStripDropDownButton toolStripDropDownButton2;
-        private ToolStripMenuItem ComponentsToolStripMenuItem;
-        private ToolStripMenuItem ComponentDocumentsToolStripMenuItem;
-        private ToolStripMenuItem списокЗаказовToolStripMenuItem;
-        private ToolStripMenuItem OrdersToolStripMenuItem;
->>>>>>> Stashed changes
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button buttonCreateOrder;
+        private System.Windows.Forms.Button buttonTakeOrderInWork;
+        private System.Windows.Forms.Button buttonOrderReady;
+        private System.Windows.Forms.Button buttonIssuedOrder;
+        private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHelp;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDocuments;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemComponents;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReports;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFurnitureList;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFurnituresComponents;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
     }
 }

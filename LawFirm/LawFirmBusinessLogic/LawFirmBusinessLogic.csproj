@@ -1,33 +1,17 @@
-<<<<<<< Updated upstream
-<Project Sdk="Microsoft.NET.Sdk">
-=======
 ﻿<Project Sdk="Microsoft.NET.Sdk">
->>>>>>> Stashed changes
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <AnalysisLevel>3</AnalysisLevel>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< Updated upstream
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="6.0.1" />
-=======
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="6.0.1" />
-    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.WebForms" Version="150.1484.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
     <PackageReference Include="PDFsharp-MigraDoc" Version="1.50.5147" />
->>>>>>> Stashed changes
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LawFirmContracts\LawFirmContracts.csproj" />
-<<<<<<< Updated upstream
-=======
-    <ProjectReference Include="..\LawFirmDataBaseImplement\LawFirmDatabaseImplement.csproj" />
->>>>>>> Stashed changes
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmContracts.Enums;
 
@@ -52,7 +50,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
                 Id = model.OrderId
             });
             if (order == null)
-            {   
+            {
                 throw new Exception("Не найден заказ");
             }
             if (order.Status != Enum.GetName(typeof(OrderStatus), 0))

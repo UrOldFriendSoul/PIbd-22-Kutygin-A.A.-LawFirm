@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 using MigraDoc.DocumentObjectModel;
@@ -16,8 +14,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
         private Document _document;
         private Section _section;
         private Table _table;
-        private static ParagraphAlignment GetParagraphAlignment(PdfParagraphAlignmentType
-       type)
+        private static ParagraphAlignment GetParagraphAlignment(PdfParagraphAlignmentType type)
         {
             return type switch
             {
@@ -26,10 +23,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                 _ => ParagraphAlignment.Justify,
             };
         }
-        /// <summary>
-        /// Создание стилей для документа
-        /// </summary>
-        /// <param name="document"></param>
+
         private static void DefineStyles(Document document)
         {
             var style = document.Styles["Normal"];
@@ -88,6 +82,5 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             renderer.RenderDocument();
             renderer.PdfDocument.Save(info.FileName);
         }
-
     }
 }

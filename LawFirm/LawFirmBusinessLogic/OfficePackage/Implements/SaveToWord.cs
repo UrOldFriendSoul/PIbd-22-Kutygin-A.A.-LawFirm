@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 using DocumentFormat.OpenXml;
@@ -15,13 +13,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
     {
         private WordprocessingDocument _wordDocument;
         private Body _docBody;
-        /// <summary>
-        /// Получение типа выравнивания
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static JustificationValues GetJustificationValues(WordJustificationType
-       type)
+        private static JustificationValues GetJustificationValues(WordJustificationType type)
         {
             return type switch
             {
@@ -30,10 +22,6 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                 _ => JustificationValues.Left,
             };
         }
-        /// <summary>
-        /// Настройки страницы
-        /// </summary>
-        /// <returns></returns>
         private static SectionProperties CreateSectionProperties()
         {
             var properties = new SectionProperties();
@@ -44,11 +32,6 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             properties.AppendChild(pageSize);
             return properties;
         }
-        /// <summary>
-        /// Задание форматирования для абзаца
-        /// </summary>
-        /// <param name="paragraphProperties"></param>
-        /// <returns></returns>
         private static ParagraphProperties CreateParagraphProperties(WordTextProperties paragraphProperties)
         {
             if (paragraphProperties != null)
@@ -68,7 +51,8 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                 {
                     paragraphMarkRunProperties.AppendChild(new FontSize
                     {
-                        Val = paragraphProperties.Size
+                        Val =
+                   paragraphProperties.Size
                     });
                 }
                 properties.AppendChild(paragraphMarkRunProperties);
@@ -76,6 +60,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
             }
             return null;
         }
+
         protected override void CreateWord(WordInfo info)
         {
             _wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document);
@@ -103,8 +88,7 @@ namespace LawFirmBusinessLogic.OfficePackage.Implements
                     docRun.AppendChild(new Text
                     {
                         Text = run.Item1,
-                        Space =
-                   SpaceProcessingModeValues.Preserve
+                        Space = SpaceProcessingModeValues.Preserve
                     });
                     docParagraph.AppendChild(docRun);
                 }

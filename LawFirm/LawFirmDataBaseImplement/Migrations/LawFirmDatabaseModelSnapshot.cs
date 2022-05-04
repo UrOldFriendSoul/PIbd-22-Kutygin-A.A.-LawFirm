@@ -15,16 +15,16 @@ namespace LawFirmDatabaseImplement.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12");
+                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Component", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ComponentName")
                         .IsRequired()
@@ -40,7 +40,7 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DocumentName")
                         .IsRequired()
@@ -59,7 +59,7 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ComponentId")
                         .HasColumnType("int");
@@ -84,7 +84,7 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -132,21 +132,13 @@ namespace LawFirmDatabaseImplement.Migrations
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Order", b =>
                 {
-<<<<<<< Updated upstream
-                    b.HasOne("LawFirmDatabaseImplement.Models.Document", "document")
-=======
                     b.HasOne("LawFirmDatabaseImplement.Models.Document", "Document")
->>>>>>> Stashed changes
                         .WithMany("Orders")
                         .HasForeignKey("DocumentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< Updated upstream
-                    b.Navigation("document");
-=======
                     b.Navigation("Document");
->>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Component", b =>

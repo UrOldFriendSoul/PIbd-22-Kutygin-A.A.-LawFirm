@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
+﻿using LawFirmContracts.BindingModels;
+using LawFirmContracts.BusinessLogicsContracts;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.IO;
 using System.Windows.Forms;
+
 
 namespace LawFirmView
 {
@@ -34,7 +26,7 @@ namespace LawFirmView
             Controls.Add(panel);
         }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void buttonForm_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
             {
@@ -51,28 +43,24 @@ namespace LawFirmView
                 var source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Clear();
                 reportViewer.LocalReport.DataSources.Add(source);
-                var parameters = new[] { new ReportParameter("ReportParameterPeriod",
- "c " +
-dateTimePickerFrom.Value.ToShortDateString() +
- " по " +
-dateTimePickerTo.Value.ToShortDateString()) };
+                var parameters = new[] { new ReportParameter("ReportParameterPeriod", "c " +
+                dateTimePickerFrom.Value.ToShortDateString() +  " по " +
+                dateTimePickerTo.Value.ToShortDateString()) };
                 reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.RefreshReport();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private void buttonCreatePDF_Click(object sender, EventArgs e)
+        private void buttonToPdf_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
             {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" };
@@ -86,14 +74,15 @@ dateTimePickerTo.Value.ToShortDateString()) };
                         DateFrom = dateTimePickerFrom.Value,
                         DateTo = dateTimePickerTo.Value
                     });
-                    MessageBox.Show("Выполнено", "Успех",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
+
     }
 }

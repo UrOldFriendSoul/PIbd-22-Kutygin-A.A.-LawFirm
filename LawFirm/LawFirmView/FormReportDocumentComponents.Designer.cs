@@ -29,63 +29,69 @@ namespace LawFirmView
         /// </summary>
         private void InitializeComponent()
         {
+            this.buttonSaveToExcel = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.ComponentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.listElem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.elemCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonSaveToExcel = new System.Windows.Forms.Button();
+            this.Document = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
+            // buttonSaveToExcel
+            // 
+            this.buttonSaveToExcel.Location = new System.Drawing.Point(13, 13);
+            this.buttonSaveToExcel.Name = "buttonSaveToExcel";
+            this.buttonSaveToExcel.Size = new System.Drawing.Size(280, 44);
+            this.buttonSaveToExcel.TabIndex = 0;
+            this.buttonSaveToExcel.Text = "Сохранить в Excel";
+            this.buttonSaveToExcel.UseVisualStyleBackColor = true;
+            this.buttonSaveToExcel.Click += new System.EventHandler(this.buttonSaveToExcel_Click);
+            // 
             // dataGridView
             // 
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ComponentName,
-            this.listElem,
-            this.elemCount});
-            this.dataGridView.Location = new System.Drawing.Point(12, 55);
+            this.Document,
+            this.Component,
+            this.Amount});
+            this.dataGridView.Location = new System.Drawing.Point(13, 78);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(494, 383);
-            this.dataGridView.TabIndex = 0;
+            this.dataGridView.RowHeadersWidth = 62;
+            this.dataGridView.RowTemplate.Height = 33;
+            this.dataGridView.Size = new System.Drawing.Size(986, 641);
+            this.dataGridView.TabIndex = 1;
             // 
-            // ComponentName
+            // Document
             // 
-            this.ComponentName.FillWeight = 150F;
-            this.ComponentName.HeaderText = "Компонент";
-            this.ComponentName.Name = "ComponentName";
+            this.Document.HeaderText = "Документ";
+            this.Document.MinimumWidth = 8;
+            this.Document.Name = "Document";
+            this.Document.Width = 310;
             // 
-            // listElem
+            // Component
             // 
-            this.listElem.HeaderText = "Изделие";
-            this.listElem.Name = "listElem";
-            this.listElem.Width = 150;
+            this.Component.HeaderText = "Компонент";
+            this.Component.MinimumWidth = 8;
+            this.Component.Name = "Component";
+            this.Component.Width = 310;
             // 
-            // elemCount
+            // Amount
             // 
-            this.elemCount.HeaderText = "Количество";
-            this.elemCount.Name = "elemCount";
-            this.elemCount.Width = 150;
-            // 
-            // ButtonSaveToExcel
-            // 
-            this.ButtonSaveToExcel.Location = new System.Drawing.Point(25, 13);
-            this.ButtonSaveToExcel.Name = "ButtonSaveToExcel";
-            this.ButtonSaveToExcel.Size = new System.Drawing.Size(119, 23);
-            this.ButtonSaveToExcel.TabIndex = 1;
-            this.ButtonSaveToExcel.Text = "Сохранить в Excel";
-            this.ButtonSaveToExcel.UseVisualStyleBackColor = true;
+            this.Amount.HeaderText = "Количество";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 310;
             // 
             // FormReportDocumentComponents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 450);
-            this.Controls.Add(this.ButtonSaveToExcel);
+            this.ClientSize = new System.Drawing.Size(1000, 721);
             this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.buttonSaveToExcel);
             this.Name = "FormReportDocumentComponents";
-            this.Text = "FormReportDocumentComponents";
+            this.Text = "Компоненты по документам";
             this.Load += new System.EventHandler(this.FormReportDocumentComponents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -94,10 +100,10 @@ namespace LawFirmView
 
         #endregion
 
-        private DataGridView dataGridView;
-        private DataGridViewTextBoxColumn ComponentName;
-        private DataGridViewTextBoxColumn listElem;
-        private DataGridViewTextBoxColumn elemCount;
-        private Button ButtonSaveToExcel;
+        private System.Windows.Forms.Button buttonSaveToExcel;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Document;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Component;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }

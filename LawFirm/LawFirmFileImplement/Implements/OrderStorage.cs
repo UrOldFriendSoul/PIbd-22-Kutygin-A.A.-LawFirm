@@ -1,13 +1,12 @@
-﻿using LawFirmContracts.BindingModels;
-using LawFirmContracts.Enums;
-using LawFirmContracts.StorageContracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmFileImplement.Models;
-using System;
-using System.Collections.Generic;
+using LawFirmContracts.Enums;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LawFirmFileImplement.Implements
 {
@@ -19,17 +18,23 @@ namespace LawFirmFileImplement.Implements
         {
             source = FileDataListSingleton.GetInstance();
         }
-        public void Delete(OrderBindingModel model)
+
+        public List<OrderViewModel> GetFullList()
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element != null)
+            return source.Orders
+                .Select(CreateModel)
+                .ToList();
+        }
+        public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
+        {
+            if (model == null)
             {
-                source.Orders.Remove(element);
+                return null;
             }
-            else
-            {
-                throw new Exception("Элемент не найден");
-            }
+            return source.Orders
+                .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                .ToList()
+                .Select(CreateModel).ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -38,36 +43,20 @@ namespace LawFirmFileImplement.Implements
             {
                 return null;
             }
-
             var order = source.Orders
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.DocumentId
+            == model.DocumentId);
             return order != null ? CreateModel(order) : null;
-        }
-
-        public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
-        {
-            if (model == null)
-            {
-                return null;
-            }
-
-            return source.Orders
-                .Where(rec => rec.DocumentId.Equals(model.DocumentId))
-                .Select(CreateModel)
-                .ToList();
-        }
-
-        public List<OrderViewModel> GetFullList()
-        {
-            return source.Orders
-                .Select(CreateModel)
-                .ToList();
         }
 
         public void Insert(OrderBindingModel model)
         {
-            int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;
-            var element = new Order { Id = maxId + 1 };
+            int maxId = source.Orders.Count > 0 ? source.Components.Max(rec => rec.Id)
+                : 0;
+            var element = new Order
+            {
+                Id = maxId + 1
+            };
             source.Orders.Add(CreateModel(model, element));
         }
 
@@ -81,7 +70,20 @@ namespace LawFirmFileImplement.Implements
             CreateModel(model, element);
         }
 
-        private static Order CreateModel(OrderBindingModel model, Order order)
+        public void Delete(OrderBindingModel model)
+        {
+            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
+            {
+                source.Orders.Remove(element);
+            }
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
+        }
+
+        private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
@@ -92,17 +94,26 @@ namespace LawFirmFileImplement.Implements
             return order;
         }
 
-
         private OrderViewModel CreateModel(Order order)
         {
+            string documentName = "";
+            foreach (var document in source.Documents)
+            {
+                if (order.DocumentId == document.Id)
+                {
+                    documentName = document.DocumentName;
+                    break;
+                }
+            }
+
             return new OrderViewModel
             {
                 Id = order.Id,
                 DocumentId = order.DocumentId,
-                DocumentName = source.Documents.FirstOrDefault(rec => rec.Id == order.DocumentId)?.DocumentName,
+                DocumentName = documentName,
                 Count = order.Count,
                 Sum = order.Sum,
-                Status = order.Status.ToString(),
+                Status = Enum.GetName(typeof(OrderStatus), order.Status),
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement
             };

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
+
 namespace LawFirmFileImplement
 {
     public class FileDataListSingleton
@@ -44,7 +45,6 @@ namespace LawFirmFileImplement
             {
                 var xDocument = XDocument.Load(ComponentFileName);
                 var xElements = xDocument.Root.Elements("Component").ToList();
-
                 foreach (var elem in xElements)
                 {
                     list.Add(new Component
@@ -54,7 +54,7 @@ namespace LawFirmFileImplement
                     });
                 }
             }
-                return list;
+            return list;
         }
         private List<Order> LoadOrders()
         {
@@ -65,17 +65,32 @@ namespace LawFirmFileImplement
                 var xElements = xDocument.Root.Elements("Order").ToList();
                 foreach (var elem in xElements)
                 {
-                    bool dateimplement = elem.Element("DateImplement").IsEmpty;
-                    list.Add(new Order
+                    var dateImpl = elem.Element("DateImplement").Value;
+                    if (dateImpl != string.Empty)
                     {
-                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
-                        Count = Convert.ToInt32(elem.Element("Count").Value),
-                        Sum = Convert.ToDecimal(elem.Element("Sum").Value),
-                        Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
-                        DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
-                        DateImplement = dateimplement ? null : Convert.ToDateTime(elem.Element("DateImplement").Value)
-                    });
+                        list.Add(new Order
+                        {
+                            Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                            DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
+                            Count = Convert.ToInt32(elem.Element("Count").Value),
+                            Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
+                            DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
+                            DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value)
+                        });
+                    }
+                    else
+                    {
+                        list.Add(new Order
+                        {
+                            Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                            DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
+                            Count = Convert.ToInt32(elem.Element("Count").Value),
+                            Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
+                            DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value)
+                        });
+                    }
                 }
             }
             return list;
@@ -90,11 +105,9 @@ namespace LawFirmFileImplement
                 foreach (var elem in xElements)
                 {
                     var docComp = new Dictionary<int, int>();
-                    foreach (var component in
-                   elem.Element("DocumentComponents").Elements("DocumentComponent").ToList())
+                    foreach (var component in elem.Element("DocumentComponents").Elements("DocumentComponent").ToList())
                     {
-                        docComp.Add(Convert.ToInt32(component.Element("Key").Value),
-                       Convert.ToInt32(component.Element("Value").Value));
+                        docComp.Add(Convert.ToInt32(component.Element("Key").Value), Convert.ToInt32(component.Element("Value").Value));
                     }
                     list.Add(new Document
                     {
@@ -159,14 +172,13 @@ namespace LawFirmFileImplement
                     xElement.Add(new XElement("Document",
                      new XAttribute("Id", document.Id),
                      new XElement("DocumentName", document.DocumentName),
-                     new XElement("Price", document.Price),
-                     compElement));
+                     new XElement("Price", document.Price), compElement));
                 }
                 var xDocument = new XDocument(xElement);
                 xDocument.Save(DocumentFileName);
             }
         }
-        public static void Save()
+        public static void Save() 
         {
             instance.SaveOrders();
             instance.SaveDocuments();
@@ -174,5 +186,3 @@ namespace LawFirmFileImplement
         }
     }
 }
-
-

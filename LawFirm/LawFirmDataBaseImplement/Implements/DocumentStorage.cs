@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmDatabaseImplement.Models;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
 
 namespace LawFirmDatabaseImplement.Implements
 {
@@ -32,12 +30,12 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using var context = new LawFirmDatabase();
             return context.Documents
-            .Include(rec => rec.DocumentComponents)
-            .ThenInclude(rec => rec.Component)
-            .Where(rec => rec.DocumentName.Contains(model.DocumentName))
-            .ToList()
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.DocumentComponents)
+                .ThenInclude(rec => rec.Component)
+                .Where(rec => rec.DocumentName.Contains(model.DocumentName))
+                .ToList()
+                .Select(CreateModel)
+                .ToList();
         }
         public DocumentViewModel GetElement(DocumentBindingModel model)
         {
@@ -47,9 +45,9 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using var context = new LawFirmDatabase();
             var document = context.Documents
-            .Include(rec => rec.DocumentComponents)
-            .ThenInclude(rec => rec.Component)
-            .FirstOrDefault(rec => rec.DocumentName == model.DocumentName || rec.Id == model.Id);
+                .Include(rec => rec.DocumentComponents)
+                .ThenInclude(rec => rec.Component)
+                .FirstOrDefault(rec => rec.DocumentName == model.DocumentName || rec.Id == model.Id);
             return document != null ? CreateModel(document) : null;
         }
         public void Insert(DocumentBindingModel model)
@@ -62,7 +60,7 @@ namespace LawFirmDatabaseImplement.Implements
                 {
                     DocumentName = model.DocumentName,
                     Price = model.Price
-                };
+                }; 
                 context.Documents.Add(document);
                 context.SaveChanges();
                 CreateModel(model, document, context);
@@ -98,8 +96,7 @@ namespace LawFirmDatabaseImplement.Implements
         public void Delete(DocumentBindingModel model)
         {
             using var context = new LawFirmDatabase();
-            Document element = context.Documents.FirstOrDefault(rec => rec.Id ==
-            model.Id);
+            Document element = context.Documents.FirstOrDefault(rec => rec.Id == model.Id);
             if (element != null)
             {
                 context.Documents.Remove(element);
@@ -110,36 +107,32 @@ namespace LawFirmDatabaseImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        private static Document CreateModel(DocumentBindingModel model, Document document,
-       LawFirmDatabase context)
+        private static Document CreateModel(DocumentBindingModel model, Document document, LawFirmDatabase context)
         {
             document.DocumentName = model.DocumentName;
             document.Price = model.Price;
             if (model.Id.HasValue)
             {
-                var documentComponents = context.DocumentComponents.Where(rec =>
-               rec.DocumentId == model.Id.Value).ToList();
+                var DocumentComponents = context.DocumentComponents.Where(rec => rec.DocumentId == model.Id.Value).ToList();
                 // удалили те, которых нет в модели
-                context.DocumentComponents.RemoveRange(documentComponents.Where(rec =>
-               !model.DocumentComponents.ContainsKey(rec.ComponentId)).ToList());
+                context.DocumentComponents.RemoveRange(DocumentComponents.Where(rec => !model.DocumentComponents.ContainsKey(rec.ComponentId)).ToList());
                 context.SaveChanges();
                 // обновили количество у существующих записей
-                foreach (var updateComponent in documentComponents)
+                foreach (var updateComponent in DocumentComponents)
                 {
-                    updateComponent.Count =
-                   model.DocumentComponents[updateComponent.ComponentId].Item2;
+                    updateComponent.Count = model.DocumentComponents[updateComponent.ComponentId].Item2;
                     model.DocumentComponents.Remove(updateComponent.ComponentId);
                 }
                 context.SaveChanges();
             }
             // добавили новые
-            foreach (var dc in model.DocumentComponents)
+            foreach (var pc in model.DocumentComponents)
             {
                 context.DocumentComponents.Add(new DocumentComponent
                 {
                     DocumentId = document.Id,
-                    ComponentId = dc.Key,
-                    Count = dc.Value.Item2
+                    ComponentId = pc.Key,
+                    Count = pc.Value.Item2
                 });
                 context.SaveChanges();
             }
@@ -152,8 +145,7 @@ namespace LawFirmDatabaseImplement.Implements
                 Id = document.Id,
                 DocumentName = document.DocumentName,
                 Price = document.Price,
-                DocumentComponents = document.DocumentComponents
-                .ToDictionary(recDC => recDC.ComponentId, recDC => (recDC.Component?.ComponentName, recDC.Count))
+                DocumentComponents = document.DocumentComponents.ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
             };
         }
     }
