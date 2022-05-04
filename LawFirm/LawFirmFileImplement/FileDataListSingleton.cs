@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
+
 namespace LawFirmFileImplement
 {
     public class FileDataListSingleton
@@ -14,14 +15,17 @@ namespace LawFirmFileImplement
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string DocumentFileName = "Document.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Document> Documents { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Documents = LoadDocuments();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -36,6 +40,7 @@ namespace LawFirmFileImplement
             SaveComponents();
             SaveOrders();
             SaveDocuments();
+            instance.SaveClients();
         }
         private List<Component> LoadComponents()
         {
@@ -44,7 +49,6 @@ namespace LawFirmFileImplement
             {
                 var xDocument = XDocument.Load(ComponentFileName);
                 var xElements = xDocument.Root.Elements("Component").ToList();
-
                 foreach (var elem in xElements)
                 {
                     list.Add(new Component
@@ -54,7 +58,7 @@ namespace LawFirmFileImplement
                     });
                 }
             }
-                return list;
+            return list;
         }
         private List<Order> LoadOrders()
         {
@@ -65,17 +69,33 @@ namespace LawFirmFileImplement
                 var xElements = xDocument.Root.Elements("Order").ToList();
                 foreach (var elem in xElements)
                 {
-                    bool dateimplement = elem.Element("DateImplement").IsEmpty;
-                    list.Add(new Order
+                    var dateImpl = elem.Element("DateImplement").Value;
+                    if (dateImpl != string.Empty)
                     {
-                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
-                        Count = Convert.ToInt32(elem.Element("Count").Value),
-                        Sum = Convert.ToDecimal(elem.Element("Sum").Value),
-                        Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
-                        DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
-                        DateImplement = dateimplement ? null : Convert.ToDateTime(elem.Element("DateImplement").Value)
-                    });
+                        list.Add(new Order
+                        {
+                            Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                            DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
+                            ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
+                            Count = Convert.ToInt32(elem.Element("Count").Value),
+                            Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
+                            DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
+                            DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value)
+                        });
+                    }
+                    else
+                    {
+                        list.Add(new Order
+                        {
+                            Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                            DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
+                            Count = Convert.ToInt32(elem.Element("Count").Value),
+                            Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                            Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
+                            DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value)
+                        });
+                    }
                 }
             }
             return list;
@@ -90,11 +110,9 @@ namespace LawFirmFileImplement
                 foreach (var elem in xElements)
                 {
                     var docComp = new Dictionary<int, int>();
-                    foreach (var component in
-                   elem.Element("DocumentComponents").Elements("DocumentComponent").ToList())
+                    foreach (var component in elem.Element("DocumentComponents").Elements("DocumentComponent").ToList())
                     {
-                        docComp.Add(Convert.ToInt32(component.Element("Key").Value),
-                       Convert.ToInt32(component.Element("Value").Value));
+                        docComp.Add(Convert.ToInt32(component.Element("Key").Value), Convert.ToInt32(component.Element("Value").Value));
                     }
                     list.Add(new Document
                     {
@@ -102,6 +120,26 @@ namespace LawFirmFileImplement
                         DocumentName = elem.Element("DocumentName").Value,
                         Price = Convert.ToDecimal(elem.Element("Price").Value),
                         DocumentComponents = docComp
+                    });
+                }
+            }
+            return list;
+        }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                var xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
                     });
                 }
             }
@@ -132,6 +170,7 @@ namespace LawFirmFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("DocumentId", order.DocumentId),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
@@ -159,20 +198,37 @@ namespace LawFirmFileImplement
                     xElement.Add(new XElement("Document",
                      new XAttribute("Id", document.Id),
                      new XElement("DocumentName", document.DocumentName),
-                     new XElement("Price", document.Price),
-                     compElement));
+                     new XElement("Price", document.Price), compElement));
                 }
                 var xDocument = new XDocument(xElement);
                 xDocument.Save(DocumentFileName);
             }
         }
-        public static void Save()
+
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                var xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
+            }
+        }
+
+        public static void Save() 
         {
             instance.SaveOrders();
             instance.SaveDocuments();
             instance.SaveComponents();
+            instance.SaveClients();
         }
     }
 }
-
-

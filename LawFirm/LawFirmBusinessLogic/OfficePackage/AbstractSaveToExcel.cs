@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 
@@ -26,30 +24,30 @@ namespace LawFirmBusinessLogic.OfficePackage
                 CellToName = "C1"
             });
             uint rowIndex = 2;
-            foreach (var dc in info.DocumentComponents)
+            foreach (var document in info.DocumentComponents)
             {
                 InsertCellInWorksheet(new ExcelCellParameters
                 {
                     ColumnName = "A",
                     RowIndex = rowIndex,
-                    Text = dc.DocumentName,
+                    Text = document.DocumentName,
                     StyleInfo = ExcelStyleInfoType.Text
                 });
                 rowIndex++;
-                foreach (var document in dc.Components)
+                foreach (var component in document.Components)
                 {
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         ColumnName = "B",
                         RowIndex = rowIndex,
-                        Text = document.Item1,
+                        Text = component.Item1,
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         ColumnName = "C",
                         RowIndex = rowIndex,
-                        Text = document.Item2.ToString(),
+                        Text = component.Item2.ToString(),
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
                     rowIndex++;
@@ -58,17 +56,15 @@ namespace LawFirmBusinessLogic.OfficePackage
                 {
                     ColumnName = "C",
                     RowIndex = rowIndex,
-                    Text = dc.TotalCount.ToString(),
+                    Text = document.TotalCount.ToString(),
                     StyleInfo = ExcelStyleInfoType.Text
                 });
                 rowIndex++;
             }
             SaveExcel(info);
         }
-        
         protected abstract void CreateExcel(ExcelInfo info);
-        protected abstract void InsertCellInWorksheet(ExcelCellParameters
-        excelParams);
+        protected abstract void InsertCellInWorksheet(ExcelCellParameters excelParams);
         protected abstract void MergeCells(ExcelMergeParameters excelParams);
         protected abstract void SaveExcel(ExcelInfo info);
     }

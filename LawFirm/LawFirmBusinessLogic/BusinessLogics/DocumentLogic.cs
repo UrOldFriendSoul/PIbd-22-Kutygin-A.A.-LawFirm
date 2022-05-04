@@ -1,8 +1,11 @@
-﻿using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
-using LawFirmContracts.ViewModels;
-using LawFirmContracts.BusinessLogicContracts;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
+using LawFirmContracts.ViewModels;
+using LawFirmContracts.Enums;
 
 namespace LawFirmBusinessLogic.BusinessLogics
 {
@@ -10,15 +13,9 @@ namespace LawFirmBusinessLogic.BusinessLogics
     {
         private readonly IDocumentStorage _documentStorage;
 
-<<<<<<< Updated upstream
-        public DocumentLogic(IDocumentStorage furnitureStorage)
-        {
-            _documentStorage = furnitureStorage;
-=======
         public DocumentLogic(IDocumentStorage documentStorage)
         {
             _documentStorage = documentStorage;
->>>>>>> Stashed changes
         }
 
         public List<DocumentViewModel> Read(DocumentBindingModel model)
@@ -66,9 +63,8 @@ namespace LawFirmBusinessLogic.BusinessLogics
 
             if (element == null)
             {
-                throw new Exception("Документы не найдены");
+                throw new Exception("Документ не найден");
             }
-
             _documentStorage.Delete(model);
         }
     }

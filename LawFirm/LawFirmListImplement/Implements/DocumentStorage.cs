@@ -1,10 +1,11 @@
-﻿using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
-using LawFirmContracts.ViewModels;
-using LawFirmListImplement.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.StoragesContracts;
+using LawFirmContracts.ViewModels;
+using LawFirmListImplement.Models;
 
 namespace LawFirmListImplement.Implements
 {
@@ -48,8 +49,7 @@ namespace LawFirmListImplement.Implements
             }
             foreach (var document in source.Documents)
             {
-                if (document.Id == model.Id || document.DocumentName ==
-                model.DocumentName)
+                if (document.Id == model.Id || document.DocumentName == model.DocumentName)
                 {
                     return CreateModel(document);
                 }
@@ -58,33 +58,31 @@ namespace LawFirmListImplement.Implements
         }
         public void Insert(DocumentBindingModel model)
         {
-            var tempDocument = new Document
+            var tempdocument = new Document
             {
                 Id = 1,
-                DocumentComponents = new
-            Dictionary<int, int>()
+                DocumentComponents = new Dictionary<int, int>()
             };
             foreach (var document in source.Documents)
             {
-                if (document.Id >= tempDocument.Id)
+                if (document.Id >= tempdocument.Id)
                 {
-                    tempDocument.Id = document.Id + 1;
+                    tempdocument.Id = document.Id + 1;
                 }
             }
-            source.Documents.Add(CreateModel(model, tempDocument));
+            source.Documents.Add(CreateModel(model, tempdocument));
         }
         public void Update(DocumentBindingModel model)
         {
             Document tempDocument = null;
             foreach (var document in source.Documents)
-
             {
                 if (document.Id == model.Id)
                 {
                     tempDocument = document;
                 }
             }
-        if (tempDocument == null)
+            if (tempDocument == null)
             {
                 throw new Exception("Элемент не найден");
             }
@@ -119,17 +117,20 @@ namespace LawFirmListImplement.Implements
             {
                 if (document.DocumentComponents.ContainsKey(component.Key))
                 {
-                    document.DocumentComponents[component.Key] = model.DocumentComponents[component.Key].Item2;
+                    document.DocumentComponents[component.Key] =
+                    model.DocumentComponents[component.Key].Item2;
                 }
                 else
                 {
-                    document.DocumentComponents.Add(component.Key, model.DocumentComponents[component.Key].Item2);
+                    document.DocumentComponents.Add(component.Key,
+                    model.DocumentComponents[component.Key].Item2);
                 }
             }
             return document;
         }
         private DocumentViewModel CreateModel(Document document)
         {
+            // требуется дополнительно получить список компонентов для изделия с названиями и их количество
             var documentComponents = new Dictionary<int, (string, int)>();
             foreach (var dc in document.DocumentComponents)
             {
@@ -152,5 +153,6 @@ namespace LawFirmListImplement.Implements
                 DocumentComponents = documentComponents
             };
         }
+
     }
 }

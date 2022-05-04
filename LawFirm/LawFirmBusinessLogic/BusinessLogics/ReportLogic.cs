@@ -1,8 +1,8 @@
 ﻿using LawFirmBusinessLogic.OfficePackage;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
         private readonly AbstractSaveToExcel _saveToExcel;
         private readonly AbstractSaveToWord _saveToWord;
         private readonly AbstractSaveToPdf _saveToPdf;
-        public ReportLogic(IDocumentStorage documentStorage, IComponentStorage componentStorage, IOrderStorage orderStorage, 
+        public ReportLogic(IDocumentStorage documentStorage, IComponentStorage componentStorage, IOrderStorage orderStorage,
         AbstractSaveToExcel saveToExcel, AbstractSaveToWord saveToWord, AbstractSaveToPdf saveToPdf)
         {
             _documentStorage = documentStorage;
@@ -31,7 +31,6 @@ namespace LawFirmBusinessLogic.BusinessLogics
         public List<ReportDocumentComponentViewModel> GetDocumentComponent()
         {
             var documents = _documentStorage.GetFullList();
-            var components = _componentStorage.GetFullList();
             var list = new List<ReportDocumentComponentViewModel>();
             foreach (var document in documents)
             {
@@ -41,57 +40,48 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var component in components)
+                foreach (var component in document.DocumentComponents)
                 {
-                    if (document.DocumentComponents.ContainsKey(component.Id))
-                    {
-                        record.Components.Add(new Tuple<string, int>(component.ComponentName, document.DocumentComponents[component.Id].Item2));
-                        record.TotalCount += document.DocumentComponents[component.Id].Item2;
-                    }
+                    record.Components.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
+                    record.TotalCount += component.Value.Item2;
                 }
                 list.Add(record);
             }
             return list;
         }
-
         public List<ReportOrdersViewModel> GetOrders(ReportBindingModel model)
         {
             return _orderStorage.GetFilteredList(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
-            })
-            .Select(x => new ReportOrdersViewModel
+            }).Select(x => new ReportOrdersViewModel
             {
                 DateCreate = x.DateCreate,
                 DocumentName = x.DocumentName,
                 Count = x.Count,
                 Sum = x.Sum,
                 Status = x.Status
-            })
-           .ToList();
+            }).ToList();
         }
-
-        public void SaveComponentsToWordFile(ReportBindingModel model)
+        public void SaveDocumentsToWordFile(ReportBindingModel model)
         {
             _saveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список документов", 
                 Documents = _documentStorage.GetFullList()
             });
         }
-
         public void SaveDocumentComponentToExcelFile(ReportBindingModel model)
         {
             _saveToExcel.CreateReport(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список документов и содержащихся в них компонентов",
                 DocumentComponents = GetDocumentComponent()
             });
         }
-
         public void SaveOrdersToPdfFile(ReportBindingModel model)
         {
             _saveToPdf.CreateDoc(new PdfInfo
@@ -103,5 +93,6 @@ namespace LawFirmBusinessLogic.BusinessLogics
                 Orders = GetOrders(model)
             });
         }
+
     }
 }

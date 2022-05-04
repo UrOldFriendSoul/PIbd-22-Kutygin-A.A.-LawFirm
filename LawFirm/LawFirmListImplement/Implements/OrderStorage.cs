@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using LawFirmContracts.BindingModels;
 using LawFirmContracts.Enums;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmListImplement.Models;
-
 
 namespace LawFirmListImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
         private readonly DataListSingleton source;
+
         public OrderStorage()
         {
             source = DataListSingleton.GetInstance();
@@ -37,7 +37,9 @@ namespace LawFirmListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if (order.DocumentId == model.DocumentId)
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate == model.DateCreate) ||
+                                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date) ||
+                                (model.ClientId.HasValue && order.ClientId == model.ClientId))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -98,7 +100,7 @@ namespace LawFirmListImplement.Implements
         {
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Orders[i].Id == model.Id)
+                if (source.Orders[i].Id == model.Id.Value)
                 {
                     source.Orders.RemoveAt(i);
                     return;
@@ -107,8 +109,9 @@ namespace LawFirmListImplement.Implements
             throw new Exception("Элемент не найден");
         }
 
-        private Order CreateModel(OrderBindingModel model, Order order)
+        private static Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -120,22 +123,31 @@ namespace LawFirmListImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
-            string docName = string.Empty;
-
-            foreach (var doc in source.Documents)
+            string documentName = "";
+            foreach (var document in source.Documents)
             {
-                if (order.DocumentId == doc.Id)
+                if (order.DocumentId == document.Id)
                 {
-                    docName = doc.DocumentName;
+                    documentName = document.DocumentName;
                     break;
                 }
             }
-
+            string clientFIO = null;
+            foreach (Client client in source.Clients)
+            {
+                if (order.ClientId == client.Id)
+                {
+                    clientFIO = client.ClientFIO;
+                    break;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = clientFIO,
                 DocumentId = order.DocumentId,
-                DocumentName = docName,
+                DocumentName = documentName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = Enum.GetName(typeof(OrderStatus), order.Status),

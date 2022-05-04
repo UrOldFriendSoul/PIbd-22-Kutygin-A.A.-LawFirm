@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmContracts.Enums;
 
@@ -37,6 +35,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
+                ClientId = model.ClientId,
                 DocumentId = model.DocumentId,
                 Count = model.Count,
                 Sum = model.Sum,
@@ -52,7 +51,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
                 Id = model.OrderId
             });
             if (order == null)
-            {   
+            {
                 throw new Exception("Не найден заказ");
             }
             if (order.Status != Enum.GetName(typeof(OrderStatus), 0))
@@ -62,6 +61,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 DocumentId = order.DocumentId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -88,6 +88,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 DocumentId = order.DocumentId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -114,6 +115,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 DocumentId = order.DocumentId,
                 Count = order.Count,
                 Sum = order.Sum,

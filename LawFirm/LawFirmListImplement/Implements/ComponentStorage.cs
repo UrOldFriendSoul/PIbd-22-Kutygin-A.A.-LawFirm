@@ -1,10 +1,10 @@
-﻿using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmListImplement.Models;
-using System;
-using System.Collections.Generic;
-
 
 namespace LawFirmListImplement.Implements
 {
@@ -48,8 +48,7 @@ namespace LawFirmListImplement.Implements
             }
             foreach (var component in source.Components)
             {
-                if (component.Id == model.Id || component.ComponentName ==
-               model.ComponentName)
+                if (component.Id == model.Id || component.ComponentName == model.ComponentName)
                 {
                     return CreateModel(component);
                 }
@@ -94,7 +93,7 @@ namespace LawFirmListImplement.Implements
                     return;
                 }
             }
-        throw new Exception("Элемент не найден");
+            throw new Exception("Элемент не найден");
         }
         private static Component CreateModel(ComponentBindingModel model, Component
        component)
@@ -110,5 +109,6 @@ namespace LawFirmListImplement.Implements
                 ComponentName = component.ComponentName
             };
         }
+
     }
 }

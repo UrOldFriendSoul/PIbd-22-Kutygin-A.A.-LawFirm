@@ -1,9 +1,10 @@
-﻿using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmFileImplement.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace LawFirmFileImplement.Implements
@@ -11,16 +12,20 @@ namespace LawFirmFileImplement.Implements
     public class DocumentStorage : IDocumentStorage
     {
         private readonly FileDataListSingleton source;
+
         public DocumentStorage()
         {
             source = FileDataListSingleton.GetInstance();
         }
+
         public List<DocumentViewModel> GetFullList()
         {
             return source.Documents
-            .Select(CreateModel)
-            .ToList();
+                .Select(CreateModel)
+                .ToList();
+
         }
+
         public List<DocumentViewModel> GetFilteredList(DocumentBindingModel model)
         {
             if (model == null)
@@ -28,10 +33,12 @@ namespace LawFirmFileImplement.Implements
                 return null;
             }
             return source.Documents
-            .Where(rec => rec.DocumentName.Contains(model.DocumentName))
-            .Select(CreateModel)
-            .ToList();
+                .Where(rec => rec.DocumentName.Contains(model.DocumentName))
+                .Select(CreateModel)
+                .ToList();
+
         }
+
         public DocumentViewModel GetElement(DocumentBindingModel model)
         {
             if (model == null)
@@ -43,18 +50,20 @@ namespace LawFirmFileImplement.Implements
            == model.Id);
             return document != null ? CreateModel(document) : null;
         }
+
+
         public void Insert(DocumentBindingModel model)
         {
             int maxId = source.Documents.Count > 0 ? source.Components.Max(rec => rec.Id)
-: 0;
+            : 0;
             var element = new Document
             {
                 Id = maxId + 1,
-                DocumentComponents = new
-           Dictionary<int, int>()
+                DocumentComponents = new Dictionary<int, int>()
             };
             source.Documents.Add(CreateModel(model, element));
         }
+
         public void Update(DocumentBindingModel model)
         {
             var element = source.Documents.FirstOrDefault(rec => rec.Id == model.Id);
@@ -63,7 +72,9 @@ namespace LawFirmFileImplement.Implements
                 throw new Exception("Элемент не найден");
             }
             CreateModel(model, element);
+
         }
+
         public void Delete(DocumentBindingModel model)
         {
             Document element = source.Documents.FirstOrDefault(rec => rec.Id == model.Id);
@@ -76,7 +87,8 @@ namespace LawFirmFileImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        private static Document CreateModel(DocumentBindingModel model, Document document)
+
+        private Document CreateModel(DocumentBindingModel model, Document document)
         {
             document.DocumentName = model.DocumentName;
             document.Price = model.Price;
@@ -93,13 +105,11 @@ namespace LawFirmFileImplement.Implements
             {
                 if (document.DocumentComponents.ContainsKey(component.Key))
                 {
-                    document.DocumentComponents[component.Key] =
-                   model.DocumentComponents[component.Key].Item2;
+                    document.DocumentComponents[component.Key] = model.DocumentComponents[component.Key].Item2;
                 }
                 else
                 {
-                    document.DocumentComponents.Add(component.Key,
-                   model.DocumentComponents[component.Key].Item2);
+                    document.DocumentComponents.Add(component.Key, model.DocumentComponents[component.Key].Item2);
                 }
             }
             return document;
@@ -111,12 +121,9 @@ namespace LawFirmFileImplement.Implements
                 Id = document.Id,
                 DocumentName = document.DocumentName,
                 Price = document.Price,
-                DocumentComponents = document.DocumentComponents
-    .ToDictionary(recDC => recDC.Key, recDC =>
-    (source.Components.FirstOrDefault(recC => recC.Id ==
-   recDC.Key)?.ComponentName, recDC.Value))
+                DocumentComponents = document.DocumentComponents.ToDictionary(recPC => recPC.Key, recPC => (source.Components.FirstOrDefault(recC => recC.Id ==
+                recPC.Key)?.ComponentName, recPC.Value))
             };
         }
     }
 }
-

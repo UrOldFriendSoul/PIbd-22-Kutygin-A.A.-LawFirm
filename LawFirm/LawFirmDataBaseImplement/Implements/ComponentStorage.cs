@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 using LawFirmDatabaseImplement.Models;
-
+using System.Linq;
 
 namespace LawFirmDatabaseImplement.Implements
 {
@@ -16,9 +14,8 @@ namespace LawFirmDatabaseImplement.Implements
         public List<ComponentViewModel> GetFullList()
         {
             using var context = new LawFirmDatabase();
-            return context.Components
-            .Select(CreateModel)
-            .ToList();
+            return context.Components.Select(CreateModel).ToList();
+            
         }
         public List<ComponentViewModel> GetFilteredList(ComponentBindingModel model)
         {
@@ -27,10 +24,7 @@ namespace LawFirmDatabaseImplement.Implements
                 return null;
             }
             using var context = new LawFirmDatabase();
-            return context.Components
-            .Where(rec => rec.ComponentName.Contains(model.ComponentName))
-            .Select(CreateModel)
-            .ToList();
+            return context.Components.Where(rec => rec.ComponentName.Contains(model.ComponentName)).Select(CreateModel).ToList();
         }
         public ComponentViewModel GetElement(ComponentBindingModel model)
         {
@@ -39,9 +33,7 @@ namespace LawFirmDatabaseImplement.Implements
                 return null;
             }
             using var context = new LawFirmDatabase();
-            var component = context.Components
-            .FirstOrDefault(rec => rec.ComponentName == model.ComponentName || rec.Id
-           == model.Id);
+            var component = context.Components.FirstOrDefault(rec => rec.ComponentName == model.ComponentName || rec.Id == model.Id);
             return component != null ? CreateModel(component) : null;
         }
         public void Insert(ComponentBindingModel model)
@@ -64,8 +56,7 @@ namespace LawFirmDatabaseImplement.Implements
         public void Delete(ComponentBindingModel model)
         {
             using var context = new LawFirmDatabase();
-            Component element = context.Components.FirstOrDefault(rec => rec.Id ==
-           model.Id);
+            Component element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
             if (element != null)
             {
                 context.Components.Remove(element);
@@ -76,12 +67,12 @@ namespace LawFirmDatabaseImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        private static Component CreateModel(ComponentBindingModel model, Component
-       component)
+        private static Component CreateModel(ComponentBindingModel model, Component component)
         {
             component.ComponentName = model.ComponentName;
             return component;
         }
+
         private static ComponentViewModel CreateModel(Component component)
         {
             return new ComponentViewModel

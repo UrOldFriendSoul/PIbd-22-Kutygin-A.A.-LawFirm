@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
-
 
 namespace LawFirmBusinessLogic.OfficePackage
 {
@@ -16,20 +13,23 @@ namespace LawFirmBusinessLogic.OfficePackage
             CreateWord(info);
             CreateParagraph(new WordParagraph
             {
-                Texts = new List<(string, WordTextProperties)> { (info.Title, new
-WordTextProperties { Bold = true, Size = "24", }) },
+                Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "24", }) },
                 TextProperties = new WordTextProperties
                 {
                     Size = "24",
                     JustificationType = WordJustificationType.Center
                 }
             });
-            foreach (var component in info.Documents)
+            foreach (var furniture in info.Documents)
             {
                 CreateParagraph(new WordParagraph
                 {
                     Texts = new List<(string, WordTextProperties)> {
-(component.DocumentName, new WordTextProperties { Bold = true, Size = "24", }) },
+                        (furniture.DocumentName + ": ", new WordTextProperties {Size = "24", Bold = true}),
+                        (Convert.ToInt32(furniture.Price).ToString(), new WordTextProperties {
+                        Size = "24"
+                        })
+                    },
                     TextProperties = new WordTextProperties
                     {
                         Size = "24",
@@ -39,7 +39,6 @@ WordTextProperties { Bold = true, Size = "24", }) },
             }
             SaveWord(info);
         }
-        
         protected abstract void CreateWord(WordInfo info);
         protected abstract void CreateParagraph(WordParagraph paragraph);
         protected abstract void SaveWord(WordInfo info);

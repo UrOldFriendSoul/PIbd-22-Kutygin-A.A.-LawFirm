@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmBusinessLogic.OfficePackage.HelperEnums;
 using LawFirmBusinessLogic.OfficePackage.HelperModels;
 
@@ -20,7 +18,7 @@ namespace LawFirmBusinessLogic.OfficePackage
             });
             CreateParagraph(new PdfParagraph
             {
-                Text = $"с{info.DateFrom.ToShortDateString() } по { info.DateTo.ToShortDateString() }", Style ="Normal"
+                Text = $"с{ info.DateFrom.ToShortDateString() } по { info.DateTo.ToShortDateString() }", Style ="Normal"
             });
             CreateTable(new List<string> { "3cm", "6cm", "3cm", "2cm", "3cm" });
             CreateRow(new PdfRowParameters
@@ -33,7 +31,7 @@ namespace LawFirmBusinessLogic.OfficePackage
             {
                 CreateRow(new PdfRowParameters
                 {
-                    Texts = new List<string> { order.DateCreate.ToShortDateString(), order.DocumentName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToString() },
+                    Texts = new List<string> { order.DateCreate.ToShortDateString(), order.DocumentName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToString()},
                     Style = "Normal",
                     ParagraphAlignment = PdfParagraphAlignmentType.Left
                 });
@@ -45,5 +43,6 @@ namespace LawFirmBusinessLogic.OfficePackage
         protected abstract void CreateTable(List<string> columns);
         protected abstract void CreateRow(PdfRowParameters rowParameters);
         protected abstract void SavePdf(PdfInfo info);
+
     }
 }

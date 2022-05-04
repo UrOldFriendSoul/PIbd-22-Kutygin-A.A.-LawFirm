@@ -29,61 +29,74 @@ namespace LawFirmView
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelCount = new System.Windows.Forms.Label();
+            this.labelDocument = new System.Windows.Forms.Label();
+            this.labelAmount = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
             this.comboBoxDocument = new System.Windows.Forms.ComboBox();
-            this.textBoxCount = new System.Windows.Forms.TextBox();
+            this.textBoxAmount = new System.Windows.Forms.TextBox();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.labelSum = new System.Windows.Forms.Label();
-            this.textBoxSum = new System.Windows.Forms.TextBox();
+            this.labelClient = new System.Windows.Forms.Label();
+            this.comboBoxClient = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // labelName
+            // labelDocument
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(13, 13);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(64, 15);
-            this.labelName.TabIndex = 0;
-            this.labelName.Text = "Документ:";
+            this.labelDocument.AutoSize = true;
+            this.labelDocument.Location = new System.Drawing.Point(12, 16);
+            this.labelDocument.Name = "labelDocument";
+            this.labelDocument.Size = new System.Drawing.Size(84, 25);
+            this.labelDocument.TabIndex = 0;
+            this.labelDocument.Text = "Изделие:";
             // 
-            // labelCount
+            // labelAmount
             // 
-            this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(12, 49);
-            this.labelCount.Name = "labelCount";
-            this.labelCount.Size = new System.Drawing.Size(75, 15);
-            this.labelCount.TabIndex = 1;
-            this.labelCount.Text = "Количество:";
+            this.labelAmount.AutoSize = true;
+            this.labelAmount.Location = new System.Drawing.Point(12, 68);
+            this.labelAmount.Name = "labelAmount";
+            this.labelAmount.Size = new System.Drawing.Size(111, 25);
+            this.labelAmount.TabIndex = 1;
+            this.labelAmount.Text = "Количество:";
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Location = new System.Drawing.Point(12, 119);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(71, 25);
+            this.labelPrice.TabIndex = 2;
+            this.labelPrice.Text = "Сумма:";
             // 
             // comboBoxDocument
             // 
             this.comboBoxDocument.FormattingEnabled = true;
-            this.comboBoxDocument.Location = new System.Drawing.Point(94, 10);
+            this.comboBoxDocument.Location = new System.Drawing.Point(137, 13);
             this.comboBoxDocument.Name = "comboBoxDocument";
-            this.comboBoxDocument.Size = new System.Drawing.Size(273, 23);
+            this.comboBoxDocument.Size = new System.Drawing.Size(452, 33);
             this.comboBoxDocument.TabIndex = 3;
-<<<<<<< Updated upstream
-            this.comboBoxDocument.TextChanged += new System.EventHandler(this.ComboBoxDocument_SelectedIndexChanged);
-
-=======
-            this.comboBoxDocument.SelectedIndexChanged += new System.EventHandler(this.comboBoxDocument_SelectedIndexChanged);
->>>>>>> Stashed changes
+            this.comboBoxDocument.SelectedIndexChanged += new System.EventHandler(this.comboBoxFurniture_SelectedIndexChanged);
             // 
-            // textBoxCount
+            // textBoxAmount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(93, 46);
-            this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(273, 23);
-            this.textBoxCount.TabIndex = 4;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.TextBoxCount_TextChanged);
+            this.textBoxAmount.Location = new System.Drawing.Point(137, 65);
+            this.textBoxAmount.Name = "textBoxAmount";
+            this.textBoxAmount.Size = new System.Drawing.Size(452, 31);
+            this.textBoxAmount.TabIndex = 4;
+            this.textBoxAmount.TextChanged += new System.EventHandler(this.textBoxAmount_TextChanged);
+            // 
+            // textBoxPrice
+            // 
+            this.textBoxPrice.Location = new System.Drawing.Point(137, 116);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.Size = new System.Drawing.Size(452, 31);
+            this.textBoxPrice.TabIndex = 5;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(181, 122);
+            this.buttonSave.Location = new System.Drawing.Point(203, 234);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(190, 56);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -91,50 +104,48 @@ namespace LawFirmView
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(263, 122);
+            this.buttonCancel.Location = new System.Drawing.Point(399, 234);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(190, 56);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // labelSum
+            // labelClient
             // 
-            this.labelSum.AutoSize = true;
-            this.labelSum.Location = new System.Drawing.Point(13, 81);
-            this.labelSum.Name = "labelSum";
-            this.labelSum.Size = new System.Drawing.Size(48, 15);
-            this.labelSum.TabIndex = 2;
-            this.labelSum.Text = "Сумма:";
+            this.labelClient.AutoSize = true;
+            this.labelClient.Location = new System.Drawing.Point(12, 167);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(71, 25);
+            this.labelClient.TabIndex = 11;
+            this.labelClient.Text = "Клиент:";
             // 
-            // textBoxSum
+            // comboBoxClient
             // 
-<<<<<<< Updated upstream
-            this.textBoxSum.Enabled = false;
-=======
->>>>>>> Stashed changes
-            this.textBoxSum.Location = new System.Drawing.Point(94, 78);
-            this.textBoxSum.Name = "textBoxSum";
-            this.textBoxSum.Size = new System.Drawing.Size(272, 23);
-            this.textBoxSum.TabIndex = 5;
-            this.textBoxSum.TextChanged += new System.EventHandler(this.FormCreateOrder_Load);
+            this.comboBoxClient.FormattingEnabled = true;
+            this.comboBoxClient.Location = new System.Drawing.Point(137, 167);
+            this.comboBoxClient.Name = "comboBoxClient";
+            this.comboBoxClient.Size = new System.Drawing.Size(452, 33);
+            this.comboBoxClient.TabIndex = 10;
             // 
             // FormCreateOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 166);
+            this.ClientSize = new System.Drawing.Size(616, 302);
+            this.Controls.Add(this.labelClient);
+            this.Controls.Add(this.comboBoxClient);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxSum);
-            this.Controls.Add(this.textBoxCount);
+            this.Controls.Add(this.textBoxPrice);
+            this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.comboBoxDocument);
-            this.Controls.Add(this.labelSum);
-            this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelPrice);
+            this.Controls.Add(this.labelAmount);
+            this.Controls.Add(this.labelDocument);
             this.Name = "FormCreateOrder";
-            this.Text = "FormCreateOrder";
+            this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -143,13 +154,15 @@ namespace LawFirmView
 
         #endregion
 
-        private Label labelName;
-        private Label labelCount;
-        private ComboBox comboBoxDocument;
-        private TextBox textBoxCount;
-        private Button buttonSave;
-        private Button buttonCancel;
-        private Label labelSum;
-        private TextBox textBoxSum;
+        private System.Windows.Forms.Label labelDocument;
+        private System.Windows.Forms.Label labelAmount;
+        private System.Windows.Forms.Label labelPrice;
+        private System.Windows.Forms.ComboBox comboBoxDocument;
+        private System.Windows.Forms.TextBox textBoxAmount;
+        private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label labelClient;
+        private System.Windows.Forms.ComboBox comboBoxClient;
     }
 }
