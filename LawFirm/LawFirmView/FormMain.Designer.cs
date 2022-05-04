@@ -31,19 +31,19 @@ namespace LawFirmView
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
-            this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
-            this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDocuments = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemImplementers = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemReports = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFurnitureList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFurnituresComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemLaunchWork = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,39 +61,19 @@ namespace LawFirmView
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(1023, 68);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(1006, 150);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
-            this.buttonCreateOrder.Size = new System.Drawing.Size(257, 44);
+            this.buttonCreateOrder.Size = new System.Drawing.Size(272, 72);
             this.buttonCreateOrder.TabIndex = 2;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
             this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
             // 
-            // buttonTakeOrderInWork
-            // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(1023, 170);
-            this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
-            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(257, 44);
-            this.buttonTakeOrderInWork.TabIndex = 3;
-            this.buttonTakeOrderInWork.Text = "Отдать на выполнение";
-            this.buttonTakeOrderInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeOrderInWork.Click += new System.EventHandler(this.buttonTakeOrderInWork_Click);
-            // 
-            // buttonOrderReady
-            // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(1023, 278);
-            this.buttonOrderReady.Name = "buttonOrderReady";
-            this.buttonOrderReady.Size = new System.Drawing.Size(257, 44);
-            this.buttonOrderReady.TabIndex = 4;
-            this.buttonOrderReady.Text = "Заказ готов";
-            this.buttonOrderReady.UseVisualStyleBackColor = true;
-            this.buttonOrderReady.Click += new System.EventHandler(this.buttonOrderReady_Click);
-            // 
             // buttonIssuedOrder
             // 
-            this.buttonIssuedOrder.Location = new System.Drawing.Point(1023, 381);
+            this.buttonIssuedOrder.Location = new System.Drawing.Point(1006, 242);
             this.buttonIssuedOrder.Name = "buttonIssuedOrder";
-            this.buttonIssuedOrder.Size = new System.Drawing.Size(257, 44);
+            this.buttonIssuedOrder.Size = new System.Drawing.Size(272, 72);
             this.buttonIssuedOrder.TabIndex = 5;
             this.buttonIssuedOrder.Text = "Заказ выдан";
             this.buttonIssuedOrder.UseVisualStyleBackColor = true;
@@ -101,9 +81,9 @@ namespace LawFirmView
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(1023, 485);
+            this.buttonRefresh.Location = new System.Drawing.Point(1006, 346);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(257, 44);
+            this.buttonRefresh.Size = new System.Drawing.Size(272, 72);
             this.buttonRefresh.TabIndex = 6;
             this.buttonRefresh.Text = "Обновить список";
             this.buttonRefresh.UseVisualStyleBackColor = true;
@@ -114,7 +94,8 @@ namespace LawFirmView
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemHelp,
-            this.toolStripMenuItemReports});
+            this.toolStripMenuItemReports,
+            this.ToolStripMenuItemLaunchWork});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1324, 33);
@@ -126,7 +107,8 @@ namespace LawFirmView
             this.toolStripMenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemComponents,
             this.toolStripMenuItemDocuments,
-            this.ToolStripMenuItemClients});
+            this.ToolStripMenuItemClients,
+            this.ToolStripMenuItemImplementers});
             this.toolStripMenuItemHelp.Name = "toolStripMenuItemHelp";
             this.toolStripMenuItemHelp.Size = new System.Drawing.Size(139, 29);
             this.toolStripMenuItemHelp.Text = "Справочники";
@@ -134,16 +116,30 @@ namespace LawFirmView
             // toolStripMenuItemComponents
             // 
             this.toolStripMenuItemComponents.Name = "toolStripMenuItemComponents";
-            this.toolStripMenuItemComponents.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItemComponents.Size = new System.Drawing.Size(220, 34);
             this.toolStripMenuItemComponents.Text = "Компоненты";
             this.toolStripMenuItemComponents.Click += new System.EventHandler(this.toolStripMenuItemComponents_Click);
             // 
             // toolStripMenuItemDocuments
             // 
             this.toolStripMenuItemDocuments.Name = "toolStripMenuItemDocuments";
-            this.toolStripMenuItemDocuments.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItemDocuments.Size = new System.Drawing.Size(220, 34);
             this.toolStripMenuItemDocuments.Text = "Документы";
             this.toolStripMenuItemDocuments.Click += new System.EventHandler(this.toolStripMenuItemDocument_Click);
+            // 
+            // ToolStripMenuItemClients
+            // 
+            this.ToolStripMenuItemClients.Name = "ToolStripMenuItemClients";
+            this.ToolStripMenuItemClients.Size = new System.Drawing.Size(220, 34);
+            this.ToolStripMenuItemClients.Text = "Клиенты";
+            this.ToolStripMenuItemClients.Click += new System.EventHandler(this.ToolStripMenuItemClients_Click);
+            // 
+            // ToolStripMenuItemImplementers
+            // 
+            this.ToolStripMenuItemImplementers.Name = "ToolStripMenuItemImplementers";
+            this.ToolStripMenuItemImplementers.Size = new System.Drawing.Size(220, 34);
+            this.ToolStripMenuItemImplementers.Text = "Исполнители";
+            this.ToolStripMenuItemImplementers.Click += new System.EventHandler(this.ToolStripMenuItemImplementers_Click);
             // 
             // toolStripMenuItemReports
             // 
@@ -176,12 +172,12 @@ namespace LawFirmView
             this.toolStripMenuItemOrderList.Text = "Список заказов";
             this.toolStripMenuItemOrderList.Click += new System.EventHandler(this.toolStripMenuItemOrderList_Click);
             // 
-            // ToolStripMenuItemClients
+            // ToolStripMenuItemLaunchWork
             // 
-            this.ToolStripMenuItemClients.Name = "ToolStripMenuItemClients";
-            this.ToolStripMenuItemClients.Size = new System.Drawing.Size(270, 34);
-            this.ToolStripMenuItemClients.Text = "Клиенты";
-            this.ToolStripMenuItemClients.Click += new System.EventHandler(this.ToolStripMenuItemClients_Click);
+            this.ToolStripMenuItemLaunchWork.Name = "ToolStripMenuItemLaunchWork";
+            this.ToolStripMenuItemLaunchWork.Size = new System.Drawing.Size(136, 29);
+            this.ToolStripMenuItemLaunchWork.Text = "Запуск работ";
+            this.ToolStripMenuItemLaunchWork.Click += new System.EventHandler(this.ToolStripMenuItemLaunchWork_Click);
             // 
             // FormMain
             // 
@@ -190,8 +186,6 @@ namespace LawFirmView
             this.ClientSize = new System.Drawing.Size(1324, 542);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonIssuedOrder);
-            this.Controls.Add(this.buttonOrderReady);
-            this.Controls.Add(this.buttonTakeOrderInWork);
             this.Controls.Add(this.buttonCreateOrder);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -210,8 +204,6 @@ namespace LawFirmView
         #endregion
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonCreateOrder;
-        private System.Windows.Forms.Button buttonTakeOrderInWork;
-        private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonIssuedOrder;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -223,5 +215,7 @@ namespace LawFirmView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFurnituresComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemImplementers;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLaunchWork;
     }
 }

@@ -38,8 +38,9 @@ namespace LawFirmListImplement.Implements
             foreach (var order in source.Orders)
             {
                 if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate == model.DateCreate) ||
-                                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date) ||
-                                (model.ClientId.HasValue && order.ClientId == model.ClientId))
+                (model.ClientId.HasValue && order.ClientId == model.ClientId.Value) ||
+                (model.SearchStatus.HasValue && model.SearchStatus.Value == order.Status) ||
+                (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && model.Status == order.Status))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -113,6 +114,7 @@ namespace LawFirmListImplement.Implements
         {
             order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
+            order.ImplementerId = (int)model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -141,11 +143,22 @@ namespace LawFirmListImplement.Implements
                     break;
                 }
             }
+            string implementerFIO = null;
+            foreach (Implementer implementer in source.Implementers)
+            {
+                if (order.ImplementerId == implementer.Id)
+                {
+                    implementerFIO = implementer.ImplementerFIO;
+                    break;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ClientFIO = clientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = documentName,
                 Count = order.Count,
