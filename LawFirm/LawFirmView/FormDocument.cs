@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
+using LawFirmContracts.BusinessLogicsContracts;
 using LawFirmContracts.ViewModels;
 using Unity;
 
@@ -25,13 +23,17 @@ namespace LawFirmView
             InitializeComponent();
             _logic = logic;
         }
+
         private void FormDocument_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    DocumentViewModel view = _logic.Read(new DocumentBindingModel { Id = id.Value})?[0];
+                    DocumentViewModel view = _logic.Read(new DocumentBindingModel
+                    {
+                        Id = id.Value
+                    })?[0];
                     if (view != null)
                     {
                         textBoxName.Text = view.DocumentName;
@@ -42,7 +44,8 @@ namespace LawFirmView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
                 }
             }
             else
@@ -50,6 +53,7 @@ namespace LawFirmView
                 documentComponents = new Dictionary<int, (string, int)>();
             }
         }
+
         private void LoadData()
         {
             try
@@ -57,19 +61,17 @@ namespace LawFirmView
                 if (documentComponents != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var dc in documentComponents)
+                    foreach (var pc in documentComponents)
                     {
-                        dataGridView.Rows.Add(new object[] { dc.Key, dc.Value.Item1, dc.Value.Item2 });
+                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -86,10 +88,9 @@ namespace LawFirmView
                 }
                 LoadData();
             }
-
         }
 
-        private void buttonUpd_Click(object sender, EventArgs e)
+        private void buttonUpdate_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -103,10 +104,9 @@ namespace LawFirmView
                     LoadData();
                 }
             }
-
         }
 
-        private void buttonDel_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -114,7 +114,6 @@ namespace LawFirmView
                 {
                     try
                     {
-
                         documentComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
@@ -126,7 +125,7 @@ namespace LawFirmView
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -140,8 +139,7 @@ namespace LawFirmView
             }
             if (string.IsNullOrEmpty(textBoxPrice.Text))
             {
-                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (documentComponents == null || documentComponents.Count == 0)

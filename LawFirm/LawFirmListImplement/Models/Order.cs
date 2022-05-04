@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LawFirmContracts.Enums;
 
 namespace LawFirmListImplement.Models
@@ -16,5 +14,6 @@ namespace LawFirmListImplement.Models
         public OrderStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 
 namespace LawFirmBusinessLogic.BusinessLogics
@@ -22,9 +23,8 @@ namespace LawFirmBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                return new List<ComponentViewModel> { _componentStorage.GetElement(model)
-            };
-           }
+                return new List<ComponentViewModel> { _componentStorage.GetElement(model) };
+            }
             return _componentStorage.GetFilteredList(model);
         }
         public void CreateOrUpdate(ComponentBindingModel model)
