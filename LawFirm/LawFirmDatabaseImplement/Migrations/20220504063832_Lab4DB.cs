@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LawFirmDatabaseImplement.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Lab4DB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

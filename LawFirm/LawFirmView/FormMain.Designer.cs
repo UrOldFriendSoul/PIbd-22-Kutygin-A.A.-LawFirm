@@ -223,5 +223,6 @@ namespace LawFirmView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFurnituresComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
+
     }
 }

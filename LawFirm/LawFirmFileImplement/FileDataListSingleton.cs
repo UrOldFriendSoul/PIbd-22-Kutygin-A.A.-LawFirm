@@ -204,7 +204,6 @@ namespace LawFirmFileImplement
                 xDocument.Save(DocumentFileName);
             }
         }
-
         private void SaveClients()
         {
             if (Clients != null)
@@ -222,7 +221,6 @@ namespace LawFirmFileImplement
                 xDocument.Save(ClientFileName);
             }
         }
-
         public static void Save() 
         {
             instance.SaveOrders();

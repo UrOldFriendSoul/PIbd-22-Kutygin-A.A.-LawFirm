@@ -128,7 +128,7 @@ namespace LawFirmView
             this.comboBoxClient.Name = "comboBoxClient";
             this.comboBoxClient.Size = new System.Drawing.Size(452, 33);
             this.comboBoxClient.TabIndex = 10;
-            // 
+
             // FormCreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -136,6 +136,7 @@ namespace LawFirmView
             this.ClientSize = new System.Drawing.Size(616, 302);
             this.Controls.Add(this.labelClient);
             this.Controls.Add(this.comboBoxClient);
+            this.ClientSize = new System.Drawing.Size(616, 228);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxPrice);
@@ -164,5 +165,6 @@ namespace LawFirmView
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label labelClient;
         private System.Windows.Forms.ComboBox comboBoxClient;
+
     }
 }

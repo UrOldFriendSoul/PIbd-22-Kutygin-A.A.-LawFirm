@@ -36,6 +36,7 @@ namespace LawFirmFileImplement.Implements
                 && rec.DateCreate.Date == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
                 (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
+
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -72,6 +73,20 @@ namespace LawFirmFileImplement.Implements
         }
 
         public void Delete(OrderBindingModel model)
+
+        {
+            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
+            {
+                source.Orders.Remove(element);
+            }
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
+        }
+
+        private Order CreateModel(OrderBindingModel model, Order order)
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
             if (element != null)
