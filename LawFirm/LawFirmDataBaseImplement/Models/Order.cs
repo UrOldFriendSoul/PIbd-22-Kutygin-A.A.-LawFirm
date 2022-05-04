@@ -9,6 +9,7 @@ namespace LawFirmDatabaseImplement.Models
     public class Order
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         [Required]
         public int DocumentId { get; set; }
         [Required]
@@ -21,5 +22,6 @@ namespace LawFirmDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Document Document { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

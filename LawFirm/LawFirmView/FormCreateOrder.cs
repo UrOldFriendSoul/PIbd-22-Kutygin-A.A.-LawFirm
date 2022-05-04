@@ -15,12 +15,14 @@ namespace LawFirmView
     {
         private readonly IDocumentLogic _logicD;
         private readonly IOrderLogic _logicO;
+        private readonly IClientLogic _logicC;
 
-        public FormCreateOrder(IDocumentLogic logicD, IOrderLogic logicO)
+        public FormCreateOrder(IDocumentLogic logicD, IOrderLogic logicO, IClientLogic logicC)
         {
             InitializeComponent();
             _logicD = logicD;
             _logicO = logicO;
+            _logicC = logicC;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
@@ -34,6 +36,15 @@ namespace LawFirmView
                     comboBoxDocument.ValueMember = "Id";
                     comboBoxDocument.DataSource = list;
                     comboBoxDocument.SelectedItem = null;
+                }
+
+                List<ClientViewModel> listC = _logicC.Read(null);
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -85,10 +96,16 @@ namespace LawFirmView
                 MessageBox.Show("Выберите документ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     DocumentId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxAmount.Text),
                     Sum = Convert.ToDecimal(textBoxPrice.Text)

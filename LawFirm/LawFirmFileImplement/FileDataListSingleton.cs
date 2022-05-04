@@ -15,14 +15,17 @@ namespace LawFirmFileImplement
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string DocumentFileName = "Document.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Document> Documents { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Documents = LoadDocuments();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -37,6 +40,7 @@ namespace LawFirmFileImplement
             SaveComponents();
             SaveOrders();
             SaveDocuments();
+            instance.SaveClients();
         }
         private List<Component> LoadComponents()
         {
@@ -72,6 +76,7 @@ namespace LawFirmFileImplement
                         {
                             Id = Convert.ToInt32(elem.Attribute("Id").Value),
                             DocumentId = Convert.ToInt32(elem.Element("DocumentId").Value),
+                            ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                             Count = Convert.ToInt32(elem.Element("Count").Value),
                             Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                             Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
@@ -120,6 +125,26 @@ namespace LawFirmFileImplement
             }
             return list;
         }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                var xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveComponents()
         {
             if (Components != null)
@@ -145,6 +170,7 @@ namespace LawFirmFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("DocumentId", order.DocumentId),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
@@ -178,11 +204,29 @@ namespace LawFirmFileImplement
                 xDocument.Save(DocumentFileName);
             }
         }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                var xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
+            }
+        }
         public static void Save() 
         {
             instance.SaveOrders();
             instance.SaveDocuments();
             instance.SaveComponents();
+            instance.SaveClients();
         }
     }
 }

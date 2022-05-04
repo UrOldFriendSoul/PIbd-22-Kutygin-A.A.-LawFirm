@@ -16,6 +16,7 @@ namespace LawFirmDatabaseImplement.Implements
         public List<OrderViewModel> GetFullList()
         {
             using var context = new LawFirmDatabase();
+            return context.Orders.Include(rec => rec.Document).Include(rec => rec.Client).ToList().Select(CreateModel).ToList();
             return context.Orders.Include(rec => rec.Document).ToList().Select(CreateModel).ToList();
         }
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
@@ -24,11 +25,11 @@ namespace LawFirmDatabaseImplement.Implements
             {
                 return null;
             }
-            using var context = new LawFirmDatabase(); 
-            return context.Orders.Include(rec => rec.Document)
-                 .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).ToList()
-                .Select(CreateModel).ToList();
-
+            using var context = new LawFirmDatabase();
+            return context.Orders.Include(rec => rec.Document).Include(rec => rec.Client)
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId)).ToList()
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -37,7 +38,7 @@ namespace LawFirmDatabaseImplement.Implements
                 return null;
             }
             using var context = new LawFirmDatabase();
-            var order = context.Orders.Include(rec => rec.Document).FirstOrDefault(rec => rec.Id == model.Id);
+            var order = context.Orders.Include(rec => rec.Document).Include(rec => rec.Client).FirstOrDefault(rec => rec.Id == model.Id);
             return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
@@ -95,6 +96,7 @@ namespace LawFirmDatabaseImplement.Implements
         {
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
+            order.ClientId = (int)model.ClientId;
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
@@ -106,6 +108,8 @@ namespace LawFirmDatabaseImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = order.Client.ClientFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = order.Document.DocumentName,
                 Count = order.Count,

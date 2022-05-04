@@ -8,6 +8,9 @@ namespace LawFirmContracts.ViewModels
     public class OrderViewModel
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
+        [DisplayName("Клиент")]
+        public string ClientFIO { get; set; }
         public int DocumentId { get; set; }
         [DisplayName("Документ")]
         public string DocumentName { get; set; }

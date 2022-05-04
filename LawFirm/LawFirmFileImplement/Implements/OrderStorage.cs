@@ -32,9 +32,11 @@ namespace LawFirmFileImplement.Implements
                 return null;
             }
             return source.Orders
-                .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
-                .ToList()
-                .Select(CreateModel).ToList();
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue
+                && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
+
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -71,6 +73,7 @@ namespace LawFirmFileImplement.Implements
         }
 
         public void Delete(OrderBindingModel model)
+
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
             if (element != null)
@@ -85,6 +88,20 @@ namespace LawFirmFileImplement.Implements
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
+            {
+                source.Orders.Remove(element);
+            }
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
+        }
+
+        private Order CreateModel(OrderBindingModel model, Order order)
+        {
+            order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -109,6 +126,8 @@ namespace LawFirmFileImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(clientFIO => clientFIO.Id == order.ClientId)?.ClientFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = documentName,
                 Count = order.Count,
