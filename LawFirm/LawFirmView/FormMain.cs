@@ -63,7 +63,17 @@ namespace LawFirmView
             form.ShowDialog();
             LoadData();
         }
+        private void toolStripMenuItemFillWarehouse_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormFillWarehouse>();
+            form.ShowDialog();
+        }
 
+        private void ToolStripMenuItemWarehouses_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
         private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
