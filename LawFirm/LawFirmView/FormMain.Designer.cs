@@ -44,6 +44,7 @@ namespace LawFirmView
             this.toolStripMenuItemFurnituresComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLaunchWork = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemShowMessages = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +96,8 @@ namespace LawFirmView
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemHelp,
             this.toolStripMenuItemReports,
-            this.ToolStripMenuItemLaunchWork});
+            this.ToolStripMenuItemLaunchWork,
+            this.ToolStripMenuItemShowMessages});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1324, 33);
@@ -179,6 +181,13 @@ namespace LawFirmView
             this.ToolStripMenuItemLaunchWork.Text = "Запуск работ";
             this.ToolStripMenuItemLaunchWork.Click += new System.EventHandler(this.ToolStripMenuItemLaunchWork_Click);
             // 
+            // ToolStripMenuItemShowMessages
+            // 
+            this.ToolStripMenuItemShowMessages.Name = "ToolStripMenuItemShowMessages";
+            this.ToolStripMenuItemShowMessages.Size = new System.Drawing.Size(159, 29);
+            this.ToolStripMenuItemShowMessages.Text = "Вывести письма";
+            this.ToolStripMenuItemShowMessages.Click += new System.EventHandler(this.ToolStripMenuItemShowMessages_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -217,5 +226,6 @@ namespace LawFirmView
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemImplementers;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLaunchWork;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShowMessages;
     }
 }

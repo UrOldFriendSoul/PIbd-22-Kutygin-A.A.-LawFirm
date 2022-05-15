@@ -139,5 +139,11 @@ namespace LawFirmClientApp.Controllers
             DocumentViewModel doc = APIClient.GetRequest<DocumentViewModel>($"api/main/getdocument?documentId={document}");
             return count * doc.Price;
         }
+        [HttpGet]
+        public IActionResult MessageInfo()
+        {
+            ViewBag.MessagesInfo = APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/GetClientsMessagesInfo?clientId={Program.Client.Id}");
+            return View();
+        }
     }
 }
