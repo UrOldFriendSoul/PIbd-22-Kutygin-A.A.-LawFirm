@@ -29,18 +29,14 @@ namespace LawFirmView
         {
             try
             {
-                var list = _messageInfoLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.DataSource = list;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(_messageInfoLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
             }
+
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
