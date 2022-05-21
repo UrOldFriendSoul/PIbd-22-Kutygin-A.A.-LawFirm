@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LawFirmBusinessLogic\LawFirmBusinessLogic.csproj" />
+    <ProjectReference Include="..\LawFirmFileImplement\LawFirmFileImplement.csproj" />
     <ProjectReference Include="..\LawFirmListImplement\LawFirmListImplement.csproj" />
   </ItemGroup>
 
