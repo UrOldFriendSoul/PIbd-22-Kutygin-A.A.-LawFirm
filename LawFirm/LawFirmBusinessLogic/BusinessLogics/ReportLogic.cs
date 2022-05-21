@@ -30,6 +30,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
         }
         public List<ReportDocumentComponentViewModel> GetDocumentComponent()
         {
+            var components = _componentStorage.GetFullList();
             var documents = _documentStorage.GetFullList();
             var list = new List<ReportDocumentComponentViewModel>();
             foreach (var document in documents)
@@ -40,10 +41,13 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var component in document.DocumentComponents)
+                foreach (var component in components)
                 {
-                        record.Components.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
-                        record.TotalCount += component.Value.Item2;
+                    if (document.DocumentComponents.ContainsKey(component.Id))
+                    {
+                        record.Components.Add(new Tuple<string, int>(component.ComponentName, document.DocumentComponents[component.Id].Item2));
+                        record.TotalCount += document.DocumentComponents[component.Id].Item2;
+                    }
                 }
                 list.Add(record);
             }
