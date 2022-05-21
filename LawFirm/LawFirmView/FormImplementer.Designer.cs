@@ -120,7 +120,7 @@
             this.Controls.Add(this.labelWorkTime);
             this.Controls.Add(this.labelFIO);
             this.Name = "FormImplementer";
-            this.Text = "FormImplementer";
+            this.Text = "Добавление исполнителя";
             this.ResumeLayout(false);
             this.PerformLayout();
 

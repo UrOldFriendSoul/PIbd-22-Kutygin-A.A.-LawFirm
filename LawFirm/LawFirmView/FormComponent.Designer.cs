@@ -89,7 +89,6 @@ namespace LawFirmView
         }
 
         #endregion
-
         private System.Windows.Forms.Label labelComponentName;
         private System.Windows.Forms.TextBox textBoxComponentName;
         private System.Windows.Forms.Button buttonSave;
