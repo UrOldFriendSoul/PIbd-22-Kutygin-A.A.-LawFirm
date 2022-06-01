@@ -152,8 +152,7 @@ namespace LawFirmDatabaseImplement.Implements
                 Id = document.Id,
                 DocumentName = document.DocumentName,
                 Price = document.Price,
-                DocumentComponents = document.DocumentComponents
-                .ToDictionary(recDC => recDC.ComponentId, recDC => (recDC.Component?.ComponentName, recDC.Count))
+                DocumentComponents = document.DocumentComponents.ToDictionary(recDC => recDC.ComponentId, recDC => (recDC.Component?.ComponentName, recDC.Count))
             };
         }
     }

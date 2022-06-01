@@ -45,13 +45,13 @@ namespace LawFirmView
             }
         }
 
-        private void КомпонентыToolStripMenuItemComponents_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemComponents_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
 
-        private void ДокументыToollStripMenuItemDocuments_Click(object sender, EventArgs e)
+        private void ToollStripMenuItemDocuments_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormDocuments>();
             form.ShowDialog();
