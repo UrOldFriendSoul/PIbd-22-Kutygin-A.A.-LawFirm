@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmDatabaseImplement", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmListImplement", "LawFirmListImplement\LawFirmListImplement.csproj", "{FD9D812C-8F77-427B-9902-4AED6A00D5BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawFirmRestApi", "LawFirmRestApi\LawFirmRestApi.csproj", "{8487AA91-9E9F-4921-ADFA-58FFD335AA01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmRestApi", "LawFirmRestApi\LawFirmRestApi.csproj", "{8487AA91-9E9F-4921-ADFA-58FFD335AA01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawFirmClientApp", "LawFirmClientApp\LawFirmClientApp.csproj", "{557AAD78-F30E-4DBA-9405-22DFC6F3004F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmClientApp", "LawFirmClientApp\LawFirmClientApp.csproj", "{557AAD78-F30E-4DBA-9405-22DFC6F3004F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmWarehouseApp", "LawFirmWarehouseApp\LawFirmWarehouseApp.csproj", "{D5D08613-71B5-439C-9DF7-A0B95B59329A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{557AAD78-F30E-4DBA-9405-22DFC6F3004F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{557AAD78-F30E-4DBA-9405-22DFC6F3004F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{557AAD78-F30E-4DBA-9405-22DFC6F3004F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5D08613-71B5-439C-9DF7-A0B95B59329A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5D08613-71B5-439C-9DF7-A0B95B59329A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5D08613-71B5-439C-9DF7-A0B95B59329A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5D08613-71B5-439C-9DF7-A0B95B59329A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,6 +38,7 @@ namespace LawFirmView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -55,6 +56,12 @@ namespace LawFirmView
         private void toolStripMenuItemDocument_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormDocuments>();
+            form.ShowDialog();
+        }
+
+        private void toolStripMenuItemClients_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormClients>();
             form.ShowDialog();
         }
 
@@ -184,12 +191,6 @@ namespace LawFirmView
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
-        }
-
-        private void ToolStripMenuItemClients_Click(object sender, EventArgs e)
-        {
-            var form = Program.Container.Resolve<FormClients>();
-            form.ShowDialog();
         }
 
     }

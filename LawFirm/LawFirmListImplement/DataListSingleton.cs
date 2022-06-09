@@ -13,6 +13,7 @@ namespace LawFirmListImplement
         public List<Document> Documents { get; set; }
         public List<Warehouse> Warehouses { get; set; }
         public List<Client> Clients { get; set; }
+
         private DataListSingleton()
         {
             Components = new List<Component>();

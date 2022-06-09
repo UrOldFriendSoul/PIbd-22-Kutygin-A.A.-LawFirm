@@ -40,16 +40,16 @@ namespace LawFirmView
             this.toolStripMenuItemComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDocument = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemWarehouses = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFillWarehouses = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemReports = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemDocumentList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemFurnitureList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDocumentsComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemWarehouseReports = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemWarehouseList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemWarehouseComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrdersGroupedByDate = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -140,10 +140,9 @@ namespace LawFirmView
             // 
             this.toolStripMenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemComponents,
-            this.toolStripMenuItemDocuments,
-            this.ToolStripMenuItemClients});
             this.toolStripMenuItemDocument,
-            this.toolStripMenuItemWarehouses});
+            this.toolStripMenuItemWarehouses,
+            this.ToolStripMenuItemClients});
             this.toolStripMenuItemHelp.Name = "toolStripMenuItemHelp";
             this.toolStripMenuItemHelp.Size = new System.Drawing.Size(117, 24);
             this.toolStripMenuItemHelp.Text = "Справочники";
@@ -169,6 +168,13 @@ namespace LawFirmView
             this.toolStripMenuItemWarehouses.Text = "Склады";
             this.toolStripMenuItemWarehouses.Click += new System.EventHandler(this.toolStripMenuItemWarehouses_Click);
             // 
+            // ToolStripMenuItemClients
+            // 
+            this.ToolStripMenuItemClients.Name = "ToolStripMenuItemClients";
+            this.ToolStripMenuItemClients.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemClients.Text = "Клиенты";
+            this.ToolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
+            // 
             // toolStripMenuItemFillWarehouses
             // 
             this.toolStripMenuItemFillWarehouses.Name = "toolStripMenuItemFillWarehouses";
@@ -179,19 +185,19 @@ namespace LawFirmView
             // toolStripMenuItemReports
             // 
             this.toolStripMenuItemReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemDocumentList,
+            this.toolStripMenuItemFurnitureList,
             this.toolStripMenuItemDocumentsComponents,
             this.toolStripMenuItemOrderList});
             this.toolStripMenuItemReports.Name = "toolStripMenuItemReports";
             this.toolStripMenuItemReports.Size = new System.Drawing.Size(73, 24);
             this.toolStripMenuItemReports.Text = "Отчеты";
             // 
-            // toolStripMenuItemDocumentList
+            // toolStripMenuItemFurnitureList
             // 
-            this.toolStripMenuItemDocumentList.Name = "toolStripMenuItemDocumentList";
-            this.toolStripMenuItemDocumentList.Size = new System.Drawing.Size(276, 26);
-            this.toolStripMenuItemDocumentList.Text = "Список документов";
-            this.toolStripMenuItemDocumentList.Click += new System.EventHandler(this.toolStripMenuItemDocumentList_Click);
+            this.toolStripMenuItemFurnitureList.Name = "toolStripMenuItemFurnitureList";
+            this.toolStripMenuItemFurnitureList.Size = new System.Drawing.Size(295, 26);
+            this.toolStripMenuItemFurnitureList.Text = "Список изделий";
+            this.toolStripMenuItemFurnitureList.Click += new System.EventHandler(this.toolStripMenuItemDocumentList_Click);
             // 
             // toolStripMenuItemDocumentsComponents
             // 
@@ -203,16 +209,9 @@ namespace LawFirmView
             // toolStripMenuItemOrderList
             // 
             this.toolStripMenuItemOrderList.Name = "toolStripMenuItemOrderList";
-            this.toolStripMenuItemOrderList.Size = new System.Drawing.Size(276, 26);
+            this.toolStripMenuItemOrderList.Size = new System.Drawing.Size(295, 26);
             this.toolStripMenuItemOrderList.Text = "Список заказов";
             this.toolStripMenuItemOrderList.Click += new System.EventHandler(this.toolStripMenuItemOrderList_Click);
-            // 
-            // ToolStripMenuItemClients
-            // 
-            this.ToolStripMenuItemClients.Name = "ToolStripMenuItemClients";
-            this.ToolStripMenuItemClients.Size = new System.Drawing.Size(270, 34);
-            this.ToolStripMenuItemClients.Text = "Клиенты";
-            this.ToolStripMenuItemClients.Click += new System.EventHandler(this.ToolStripMenuItemClients_Click);
             // 
             // toolStripMenuItemWarehouseReports
             // 
@@ -260,7 +259,7 @@ namespace LawFirmView
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
-            this.Text = "Юридическая фирма";
+            this.Text = "Сборка мебели под заказ";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -282,16 +281,15 @@ namespace LawFirmView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDocument;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReports;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDocumentList;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFurnitureList;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDocumentsComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
-
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouses;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFillWarehouses;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouseReports;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouseList;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouseComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrdersGroupedByDate;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
     }
 }

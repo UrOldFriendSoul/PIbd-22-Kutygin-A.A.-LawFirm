@@ -110,7 +110,6 @@ namespace LawFirmDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
@@ -210,7 +209,6 @@ namespace LawFirmDatabaseImplement.Migrations
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Order", b =>
                 {
-
                     b.HasOne("LawFirmDatabaseImplement.Models.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
@@ -225,12 +223,6 @@ namespace LawFirmDatabaseImplement.Migrations
 
                     b.Navigation("Client");
 
-                    b.Navigation("Document");
-                });
-
-            modelBuilder.Entity("LawFirmDatabaseImplement.Models.Client", b =>
-                {
-                    b.Navigation("Orders");
                     b.Navigation("Document");
                 });
 
@@ -251,6 +243,11 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Navigation("Component");
 
                     b.Navigation("Warehouse");
+                });
+
+            modelBuilder.Entity("LawFirmDatabaseImplement.Models.Client", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Component", b =>
