@@ -141,6 +141,54 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("LawFirmDatabaseImplement.Models.Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResponsiblePerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Warehouses");
+                });
+
+            modelBuilder.Entity("LawFirmDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("WarehouseComponents");
+                });
+
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.DocumentComponent", b =>
                 {
                     b.HasOne("LawFirmDatabaseImplement.Models.Component", "Component")
@@ -186,6 +234,25 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Navigation("Document");
                 });
 
+            modelBuilder.Entity("LawFirmDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.HasOne("LawFirmDatabaseImplement.Models.Component", "Component")
+                        .WithMany()
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LawFirmDatabaseImplement.Models.Warehouse", "Warehouse")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+
+                    b.Navigation("Warehouse");
+                });
+
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Component", b =>
                 {
                     b.Navigation("DocumentComponents");
@@ -196,6 +263,11 @@ namespace LawFirmDatabaseImplement.Migrations
                     b.Navigation("DocumentComponents");
 
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("LawFirmDatabaseImplement.Models.Warehouse", b =>
+                {
+                    b.Navigation("WarehouseComponents");
                 });
 #pragma warning restore 612, 618
         }
