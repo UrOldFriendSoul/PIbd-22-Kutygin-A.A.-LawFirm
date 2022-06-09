@@ -43,6 +43,14 @@ namespace LawFirmView
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
+            currentContainer.RegisterType<IComponentStorage, ComponentStorage> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderStorage, OrderStorage> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentStorage, DocumentStorage> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWarehouseStorage, WarehouseStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComponentLogic, ComponentLogic> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderLogic, OrderLogic> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentLogic, DocumentLogic> (new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWarehouseLogic, WarehouseLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IDocumentStorage, DocumentStorage>(new HierarchicalLifetimeManager());

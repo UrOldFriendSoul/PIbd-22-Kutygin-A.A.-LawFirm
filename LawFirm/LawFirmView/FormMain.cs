@@ -46,12 +46,14 @@ namespace LawFirmView
             }
         }
 
+        private void ToolStripMenuItemComponents_Click(object sender, EventArgs e)
         private void toolStripMenuItemComponents_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
 
+        private void ToollStripMenuItemDocuments_Click(object sender, EventArgs e)
         private void toolStripMenuItemDocument_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormDocuments>();
@@ -86,7 +88,17 @@ namespace LawFirmView
             form.ShowDialog();
             LoadData();
         }
+        private void toolStripMenuItemFillWarehouse_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormFillWarehouse>();
+            form.ShowDialog();
+        }
 
+        private void ToolStripMenuItemWarehouses_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
         private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)

@@ -57,8 +57,12 @@ namespace LawFirmView
             // 
             // buttonSave
             // 
+            this.buttonSave.Location = new System.Drawing.Point(176, 105);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Location = new System.Drawing.Point(328, 112);
             this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(96, 31);
+            this.buttonSave.TabIndex = 0;
             this.buttonSave.Size = new System.Drawing.Size(154, 47);
             this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "Сохранить";
@@ -67,8 +71,12 @@ namespace LawFirmView
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Location = new System.Drawing.Point(279, 105);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Location = new System.Drawing.Point(498, 112);
             this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(86, 31);
+            this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Size = new System.Drawing.Size(154, 47);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
@@ -78,13 +86,40 @@ namespace LawFirmView
             // comboBoxComponent
             // 
             this.comboBoxComponent.FormattingEnabled = true;
+            this.comboBoxComponent.Location = new System.Drawing.Point(96, 17);
+            this.comboBoxComponent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxComponent.Location = new System.Drawing.Point(125, 12);
             this.comboBoxComponent.Name = "comboBoxComponent";
+            this.comboBoxComponent.Size = new System.Drawing.Size(285, 28);
+            this.comboBoxComponent.TabIndex = 2;
             this.comboBoxComponent.Size = new System.Drawing.Size(527, 33);
             this.comboBoxComponent.TabIndex = 4;
             // 
             // textBoxAmount
             // 
+            this.textBoxCount.Location = new System.Drawing.Point(96, 57);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxCount.Name = "textBoxCount";
+            this.textBoxCount.Size = new System.Drawing.Size(285, 27);
+            this.textBoxCount.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Компонент:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Количество:";
             this.textBoxAmount.Location = new System.Drawing.Point(125, 62);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(527, 31);
@@ -92,13 +127,19 @@ namespace LawFirmView
             // 
             // FormDocumentComponent
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(395, 152);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxCount);
             this.ClientSize = new System.Drawing.Size(671, 187);
             this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.comboBoxComponent);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Controls.Add(this.labelAmount);
             this.Controls.Add(this.labelComponent);
             this.Name = "FormDocumentComponent";

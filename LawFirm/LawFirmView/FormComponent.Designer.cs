@@ -37,6 +37,12 @@ namespace LawFirmView
             // 
             // labelComponentName
             // 
+            textLabel.AutoSize = true;
+            textLabel.Location = new System.Drawing.Point(29, 20);
+            textLabel.Name = "textLabel";
+            textLabel.Size = new System.Drawing.Size(80, 20);
+            textLabel.TabIndex = 3;
+            textLabel.Text = "Название:";
             this.labelComponentName.AutoSize = true;
             this.labelComponentName.Location = new System.Drawing.Point(12, 9);
             this.labelComponentName.Name = "labelComponentName";
@@ -46,6 +52,11 @@ namespace LawFirmView
             // 
             // textBoxComponentName
             // 
+            this.textBoxName.Location = new System.Drawing.Point(106, 16);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(278, 27);
+            this.textBoxName.TabIndex = 0;
             this.textBoxComponentName.Location = new System.Drawing.Point(112, 9);
             this.textBoxComponentName.Name = "textBoxComponentName";
             this.textBoxComponentName.Size = new System.Drawing.Size(463, 31);
@@ -53,8 +64,12 @@ namespace LawFirmView
             // 
             // buttonSave
             // 
+            this.buttonSave.Location = new System.Drawing.Point(200, 56);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Location = new System.Drawing.Point(182, 68);
             this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(93, 31);
+            this.buttonSave.TabIndex = 1;
             this.buttonSave.Size = new System.Drawing.Size(188, 47);
             this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "Сохранить";
@@ -63,8 +78,12 @@ namespace LawFirmView
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Location = new System.Drawing.Point(299, 56);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Location = new System.Drawing.Point(385, 68);
             this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(86, 31);
+            this.buttonCancel.TabIndex = 2;
             this.buttonCancel.Size = new System.Drawing.Size(190, 47);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
@@ -73,11 +92,16 @@ namespace LawFirmView
             // 
             // FormComponent
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(399, 119);
+            this.Controls.Add(textLabel);
             this.ClientSize = new System.Drawing.Size(590, 137);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.textBoxName);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Controls.Add(this.textBoxComponentName);
             this.Controls.Add(this.labelComponentName);
             this.Name = "FormComponent";
