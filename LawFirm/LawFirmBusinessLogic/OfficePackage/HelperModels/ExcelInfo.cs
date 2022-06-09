@@ -10,5 +10,7 @@ namespace LawFirmBusinessLogic.OfficePackage.HelperModels
         public string FileName { get; set; }
         public string Title { get; set; }
         public List<ReportDocumentComponentViewModel> DocumentComponents { get; set; }
+        public List<ReportWarehouseComponentViewModel> WarehouseComponents { get; set; }
+
     }
 }

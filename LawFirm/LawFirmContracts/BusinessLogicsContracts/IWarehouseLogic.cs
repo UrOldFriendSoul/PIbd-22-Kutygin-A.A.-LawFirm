@@ -4,7 +4,7 @@ using System.Text;
 using LawFirmContracts.BindingModels;
 using LawFirmContracts.ViewModels;
 
-namespace LawFirmContracts.BusinessLogicContracts
+namespace LawFirmContracts.BusinessLogicsContracts
 {
     public interface IWarehouseLogic
     {

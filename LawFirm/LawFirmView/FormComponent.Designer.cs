@@ -37,12 +37,6 @@ namespace LawFirmView
             // 
             // labelComponentName
             // 
-            textLabel.AutoSize = true;
-            textLabel.Location = new System.Drawing.Point(29, 20);
-            textLabel.Name = "textLabel";
-            textLabel.Size = new System.Drawing.Size(80, 20);
-            textLabel.TabIndex = 3;
-            textLabel.Text = "Название:";
             this.labelComponentName.AutoSize = true;
             this.labelComponentName.Location = new System.Drawing.Point(12, 9);
             this.labelComponentName.Name = "labelComponentName";
@@ -52,11 +46,6 @@ namespace LawFirmView
             // 
             // textBoxComponentName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(106, 16);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(278, 27);
-            this.textBoxName.TabIndex = 0;
             this.textBoxComponentName.Location = new System.Drawing.Point(112, 9);
             this.textBoxComponentName.Name = "textBoxComponentName";
             this.textBoxComponentName.Size = new System.Drawing.Size(463, 31);
@@ -96,11 +85,11 @@ namespace LawFirmView
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 119);
-            this.Controls.Add(textLabel);
+            this.Controls.Add(labelComponentName);
             this.ClientSize = new System.Drawing.Size(590, 137);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxComponentName);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Controls.Add(this.textBoxComponentName);
             this.Controls.Add(this.labelComponentName);

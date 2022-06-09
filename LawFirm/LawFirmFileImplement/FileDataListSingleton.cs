@@ -235,7 +235,6 @@ namespace LawFirmFileImplement
                 xDocument.Save(WarehouseFileName);
             }
         }
-        public static void Save()
         public static void Save() 
         {
             instance.SaveOrders();
