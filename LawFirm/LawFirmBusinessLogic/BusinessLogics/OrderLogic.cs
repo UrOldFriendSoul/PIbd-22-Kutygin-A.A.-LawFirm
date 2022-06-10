@@ -12,10 +12,14 @@ namespace LawFirmBusinessLogic.BusinessLogics
     public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
+        private readonly IWarehouseStorage _warehouseStorage;
+        private readonly IDocumentStorage _documentStorage;
 
-        public OrderLogic(IOrderStorage orderStorage)
+        public OrderLogic(IOrderStorage orderStorage, IWarehouseStorage warehouseStorage, IDocumentStorage documentStorage)
         {
             _orderStorage = orderStorage;
+            _warehouseStorage = warehouseStorage;
+            _documentStorage = documentStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -57,6 +61,11 @@ namespace LawFirmBusinessLogic.BusinessLogics
             if (order.Status != Enum.GetName(typeof(OrderStatus), 0))
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            var document = _documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId });
+            if (!_warehouseStorage.CheckComponentsAmount(order.Count, document.DocumentComponents))
+            {
+                throw new Exception("Недостаточно компонентов на складе - невозможно принять заказ в работу, пополните склад");
             }
             _orderStorage.Update(new OrderBindingModel
             {

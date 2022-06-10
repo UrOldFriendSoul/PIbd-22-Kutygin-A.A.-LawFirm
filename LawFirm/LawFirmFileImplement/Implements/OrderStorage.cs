@@ -88,19 +88,6 @@ namespace LawFirmFileImplement.Implements
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element != null)
-            {
-                source.Orders.Remove(element);
-            }
-            else
-            {
-                throw new Exception("Элемент не найден");
-            }
-        }
-
-        private Order CreateModel(OrderBindingModel model, Order order)
-        {
             order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;

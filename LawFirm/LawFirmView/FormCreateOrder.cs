@@ -74,7 +74,7 @@ namespace LawFirmView
             }
         }
 
-        private void comboBoxFurniture_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxDocument_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
