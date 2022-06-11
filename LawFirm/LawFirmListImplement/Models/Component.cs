@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LawFirmListImplement.Models
 {
@@ -10,5 +8,6 @@ namespace LawFirmListImplement.Models
     {
         public int Id { get; set; }
         public string ComponentName { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace LawFirmView
+﻿
+namespace LawFirmView
 {
     partial class FormComponent
     {
@@ -28,37 +29,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label textLabel;
-            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.labelComponentName = new System.Windows.Forms.Label();
+            this.textBoxComponentName = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            textLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textLabel
+            // labelComponentName
             // 
-            textLabel.AutoSize = true;
-            textLabel.Location = new System.Drawing.Point(29, 20);
-            textLabel.Name = "textLabel";
-            textLabel.Size = new System.Drawing.Size(80, 20);
-            textLabel.TabIndex = 3;
-            textLabel.Text = "Название:";
+            this.labelComponentName.AutoSize = true;
+            this.labelComponentName.Location = new System.Drawing.Point(12, 9);
+            this.labelComponentName.Name = "labelComponentName";
+            this.labelComponentName.Size = new System.Drawing.Size(94, 25);
+            this.labelComponentName.TabIndex = 0;
+            this.labelComponentName.Text = "Название:";
             // 
-            // textBoxName
+            // textBoxComponentName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(106, 16);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(278, 27);
-            this.textBoxName.TabIndex = 0;
+            this.textBoxComponentName.Location = new System.Drawing.Point(112, 9);
+            this.textBoxComponentName.Name = "textBoxComponentName";
+            this.textBoxComponentName.Size = new System.Drawing.Size(463, 31);
+            this.textBoxComponentName.TabIndex = 1;
             // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(200, 56);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonSave.Location = new System.Drawing.Point(182, 68);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(93, 31);
             this.buttonSave.TabIndex = 1;
+            this.buttonSave.Size = new System.Drawing.Size(188, 47);
+            this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -67,9 +69,12 @@
             // 
             this.buttonCancel.Location = new System.Drawing.Point(299, 56);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonCancel.Location = new System.Drawing.Point(385, 68);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(86, 31);
             this.buttonCancel.TabIndex = 2;
+            this.buttonCancel.Size = new System.Drawing.Size(190, 47);
+            this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -77,13 +82,17 @@
             // FormComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 119);
-            this.Controls.Add(textLabel);
+            this.Controls.Add(labelComponentName);
+            this.ClientSize = new System.Drawing.Size(590, 137);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxComponentName);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Controls.Add(this.textBoxComponentName);
+            this.Controls.Add(this.labelComponentName);
             this.Name = "FormComponent";
             this.Text = "Компонент";
             this.Load += new System.EventHandler(this.FormComponent_Load);
@@ -94,9 +103,9 @@
 
         #endregion
 
-        private TextBox textBoxName;
-        private Button buttonSave;
-        private Button buttonCancel;
-        private Label textLabel;
+        private System.Windows.Forms.Label labelComponentName;
+        private System.Windows.Forms.TextBox textBoxComponentName;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }

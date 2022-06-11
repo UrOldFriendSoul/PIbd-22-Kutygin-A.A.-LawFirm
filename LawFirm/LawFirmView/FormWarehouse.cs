@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
+using LawFirmContracts.BusinessLogicsContracts;
 using LawFirmContracts.ViewModels;
 using Unity;
 

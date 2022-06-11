@@ -29,59 +29,97 @@ namespace LawFirmView
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelCount = new System.Windows.Forms.Label();
+            this.labelDocument = new System.Windows.Forms.Label();
+            this.labelAmount = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
             this.comboBoxDocument = new System.Windows.Forms.ComboBox();
-            this.textBoxCount = new System.Windows.Forms.TextBox();
+            this.textBoxAmount = new System.Windows.Forms.TextBox();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.labelSum = new System.Windows.Forms.Label();
-            this.textBoxSum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // labelName
+            // labelDocument
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(15, 17);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(79, 20);
-            this.labelName.TabIndex = 0;
-            this.labelName.Text = "Документ:";
+            this.labelDocument.AutoSize = true;
+            this.labelDocument.Location = new System.Drawing.Point(15, 17);
+            this.labelDocument.Name = "labelName";
+            this.labelDocument.Size = new System.Drawing.Size(79, 20);
+            this.labelDocument.TabIndex = 0;
+            this.labelDocument.Text = "Документ:";
+            this.labelDocument.AutoSize = true;
+            this.labelDocument.Location = new System.Drawing.Point(12, 16);
+            this.labelDocument.Name = "labelDocument";
+            this.labelDocument.Size = new System.Drawing.Size(84, 25);
+            this.labelDocument.TabIndex = 0;
+            this.labelDocument.Text = "Изделие:";
             // 
-            // labelCount
+            // labelAmount
             // 
-            this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(14, 65);
-            this.labelCount.Name = "labelCount";
-            this.labelCount.Size = new System.Drawing.Size(93, 20);
-            this.labelCount.TabIndex = 1;
-            this.labelCount.Text = "Количество:";
+            this.labelAmount.AutoSize = true;
+            this.labelAmount.Location = new System.Drawing.Point(14, 65);
+            this.labelAmount.Name = "labelCount";
+            this.labelAmount.Size = new System.Drawing.Size(93, 20);
+            this.labelAmount.TabIndex = 1;
+            this.labelAmount.Text = "Количество:";
+            this.labelAmount.AutoSize = true;
+            this.labelAmount.Location = new System.Drawing.Point(12, 68);
+            this.labelAmount.Name = "labelAmount";
+            this.labelAmount.Size = new System.Drawing.Size(111, 25);
+            this.labelAmount.TabIndex = 1;
+            this.labelAmount.Text = "Количество:";
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Location = new System.Drawing.Point(12, 119);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(71, 25);
+            this.labelPrice.TabIndex = 2;
+            this.labelPrice.Text = "Сумма:";
             // 
             // comboBoxDocument
             // 
             this.comboBoxDocument.FormattingEnabled = true;
             this.comboBoxDocument.Location = new System.Drawing.Point(107, 13);
             this.comboBoxDocument.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxDocument.Location = new System.Drawing.Point(137, 13);
             this.comboBoxDocument.Name = "comboBoxDocument";
             this.comboBoxDocument.Size = new System.Drawing.Size(311, 28);
+            this.comboBoxDocument.Size = new System.Drawing.Size(452, 33);
             this.comboBoxDocument.TabIndex = 3;
-            this.comboBoxDocument.TextChanged += new System.EventHandler(this.ComboBoxDocument_SelectedIndexChanged);
+            this.comboBoxDocument.TextChanged += new System.EventHandler(this.comboBoxDocument_SelectedIndexChanged);
+            this.comboBoxDocument.SelectedIndexChanged += new System.EventHandler(this.comboBoxDocument_SelectedIndexChanged);
             // 
-            // textBoxCount
+            // textBoxAmount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(106, 61);
-            this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(311, 27);
-            this.textBoxCount.TabIndex = 4;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.TextBoxCount_TextChanged);
+            this.textBoxAmount.Location = new System.Drawing.Point(106, 61);
+            this.textBoxAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxAmount.Name = "textBoxCount";
+            this.textBoxAmount.Size = new System.Drawing.Size(311, 27);
+            this.textBoxAmount.TabIndex = 4;
+            this.textBoxAmount.TextChanged += new System.EventHandler(this.textBoxAmount_TextChanged);
+            this.textBoxAmount.Location = new System.Drawing.Point(137, 65);
+            this.textBoxAmount.Name = "textBoxAmount";
+            this.textBoxAmount.Size = new System.Drawing.Size(452, 31);
+            this.textBoxAmount.TabIndex = 4;
+            this.textBoxAmount.TextChanged += new System.EventHandler(this.textBoxAmount_TextChanged);
+            // 
+            // textBoxPrice
+            // 
+            this.textBoxPrice.Location = new System.Drawing.Point(137, 116);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.Size = new System.Drawing.Size(452, 31);
+            this.textBoxPrice.TabIndex = 5;
             // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(200, 163);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonSave.Location = new System.Drawing.Point(196, 169);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(93, 31);
+            this.buttonSave.Size = new System.Drawing.Size(190, 56);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -91,47 +129,33 @@ namespace LawFirmView
             // 
             this.buttonCancel.Location = new System.Drawing.Point(301, 163);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonCancel.Location = new System.Drawing.Point(392, 169);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(86, 31);
+            this.buttonCancel.Size = new System.Drawing.Size(190, 56);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // labelSum
-            // 
-            this.labelSum.AutoSize = true;
-            this.labelSum.Location = new System.Drawing.Point(15, 108);
-            this.labelSum.Name = "labelSum";
-            this.labelSum.Size = new System.Drawing.Size(58, 20);
-            this.labelSum.TabIndex = 2;
-            this.labelSum.Text = "Сумма:";
-            // 
-            // textBoxSum
-            // 
-            this.textBoxSum.Enabled = false;
-            this.textBoxSum.Location = new System.Drawing.Point(107, 104);
-            this.textBoxSum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxSum.Name = "textBoxSum";
-            this.textBoxSum.Size = new System.Drawing.Size(310, 27);
-            this.textBoxSum.TabIndex = 5;
-            // 
             // FormCreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(433, 221);
+            this.ClientSize = new System.Drawing.Size(616, 228);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxSum);
-            this.Controls.Add(this.textBoxCount);
+            this.Controls.Add(this.textBoxPrice);
+            this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.comboBoxDocument);
-            this.Controls.Add(this.labelSum);
-            this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.labelName);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Controls.Add(this.labelPrice);
+            this.Controls.Add(this.labelAmount);
+            this.Controls.Add(this.labelDocument);
             this.Name = "FormCreateOrder";
-            this.Text = "FormCreateOrder";
+            this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,13 +164,13 @@ namespace LawFirmView
 
         #endregion
 
-        private Label labelName;
-        private Label labelCount;
-        private ComboBox comboBoxDocument;
-        private TextBox textBoxCount;
-        private Button buttonSave;
-        private Button buttonCancel;
-        private Label labelSum;
-        private TextBox textBoxSum;
+        private System.Windows.Forms.Label labelDocument;
+        private System.Windows.Forms.Label labelAmount;
+        private System.Windows.Forms.Label labelPrice;
+        private System.Windows.Forms.ComboBox comboBoxDocument;
+        private System.Windows.Forms.TextBox textBoxAmount;
+        private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }

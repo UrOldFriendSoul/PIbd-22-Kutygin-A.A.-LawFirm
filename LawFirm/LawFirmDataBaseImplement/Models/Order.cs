@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using LawFirmContracts.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace LawFirmDatabaseImplement.Models
 {
     public class Order
     {
         public int Id { get; set; }
+        [Required]
         public int DocumentId { get; set; }
-        public virtual Document document { get; set; }
         [Required]
         public int Count { get; set; }
         [Required]
@@ -22,5 +20,6 @@ namespace LawFirmDatabaseImplement.Models
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public virtual Document Document { get; set; }
     }
 }

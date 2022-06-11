@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LawFirmListImplement.Models
 {
@@ -12,6 +10,5 @@ namespace LawFirmListImplement.Models
         public string DocumentName { get; set; }
         public decimal Price { get; set; }
         public Dictionary<int, int> DocumentComponents { get; set; }
-
     }
 }

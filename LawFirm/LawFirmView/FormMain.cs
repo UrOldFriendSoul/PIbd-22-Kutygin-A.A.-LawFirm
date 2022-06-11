@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
+using LawFirmContracts.BusinessLogicsContracts;
 using Unity;
 
 namespace LawFirmView
@@ -16,17 +14,21 @@ namespace LawFirmView
     public partial class FormMain : Form
     {
         private readonly IOrderLogic _orderLogic;
-        public FormMain(IOrderLogic orderLogic)
+        private readonly IReportLogic _reportLogic;
+
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
+            _reportLogic = reportLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
-        private void LoadData()
+
+        private void LoadData() 
         {
             try
             {
@@ -40,40 +42,86 @@ namespace LawFirmView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void ToolStripMenuItemComponents_Click(object sender, EventArgs e)
+        private void toolStripMenuItemComponents_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
 
-        private void ToollStripMenuItemDocuments_Click(object sender, EventArgs e)
+        private void toolStripMenuItemDocument_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormDocuments>();
             form.ShowDialog();
         }
 
+        private void toolStripMenuItemDocumentList_Click(object sender, EventArgs e)
+        {
+            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _reportLogic.SaveDocumentsToWordFile(new ReportBindingModel
+                {
+                    FileName = dialog.FileName
+                });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void toolStripMenuItemDocumentsComponents_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportDocumentComponents>();
+            form.ShowDialog();
+        }
+        private void toolStripMenuItemOrderList_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void toolStripMenuItemWarehouseList_Click(object sender, EventArgs e)
+        {
+            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _reportLogic.SaveWarehousesToWordFile(new ReportBindingModel
+                {
+                    FileName = dialog.FileName
+                });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void toolStripMenuItemWarehouseComponents_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportWarehouseComponents>();
+            form.ShowDialog();
+        }
+        private void toolStripMenuItemOrdersGroupedByDate_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportOrdersGroupedByDate>();
+            form.ShowDialog();
+        }
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
         }
-        private void toolStripMenuItemFillWarehouse_Click(object sender, EventArgs e)
+
+        private void toolStripMenuItemWarehouses_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
+        private void toolStripMenuItemFillWarehouses_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormFillWarehouse>();
             form.ShowDialog();
         }
 
-        private void ToolStripMenuItemWarehouses_Click(object sender, EventArgs e)
-        {
-            var form = Program.Container.Resolve<FormWarehouses>();
-            form.ShowDialog();
-        }
         private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -89,8 +137,7 @@ namespace LawFirmView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -110,8 +157,7 @@ namespace LawFirmView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -120,8 +166,7 @@ namespace LawFirmView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value); try
                 {
                     _orderLogic.DeliveryOrder(new ChangeStatusBindingModel
                     {
@@ -131,15 +176,15 @@ namespace LawFirmView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
+
     }
 }

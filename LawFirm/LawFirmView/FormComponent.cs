@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.BusinessLogicsContracts;
 
 namespace LawFirmView
 {
@@ -17,6 +15,7 @@ namespace LawFirmView
         public int Id { set { id = value; } }
         private readonly IComponentLogic _logic;
         private int? id;
+
         public FormComponent(IComponentLogic logic)
         {
             InitializeComponent();
@@ -32,7 +31,7 @@ namespace LawFirmView
                     var view = _logic.Read(new ComponentBindingModel { Id = id })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ComponentName;
+                        textBoxComponentName.Text = view.ComponentName;
                     }
                 }
                 catch (Exception ex)
@@ -44,27 +43,25 @@ namespace LawFirmView
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text))
+            if (string.IsNullOrEmpty(textBoxComponentName.Text))
             {
-                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                 _logic.CreateOrUpdate(new ComponentBindingModel
-            {
-                     Id = id,
-                     ComponentName = textBoxName.Text
-                 });
+                _logic.CreateOrUpdate(new ComponentBindingModel
+                {
+                    Id = id,
+                    ComponentName = textBoxComponentName.Text
+                });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

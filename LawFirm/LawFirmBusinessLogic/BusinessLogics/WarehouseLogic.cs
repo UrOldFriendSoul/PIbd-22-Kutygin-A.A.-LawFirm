@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using LawFirmContracts.BindingModels;
-using LawFirmContracts.BusinessLogicContracts;
-using LawFirmContracts.StorageContracts;
+using LawFirmContracts.BusinessLogicsContracts;
+using LawFirmContracts.StoragesContracts;
 using LawFirmContracts.ViewModels;
 
 namespace LawFirmBusinessLogic.BusinessLogics

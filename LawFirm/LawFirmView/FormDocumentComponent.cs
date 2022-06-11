@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using LawFirmContracts.BusinessLogicContracts;
+using LawFirmContracts.BindingModels;
+using LawFirmContracts.BusinessLogicsContracts;
 using LawFirmContracts.ViewModels;
-
 
 namespace LawFirmView
 {
@@ -23,13 +21,16 @@ namespace LawFirmView
         public string ComponentName { get { return comboBoxComponent.Text; } }
         public int Count
         {
-            get { return Convert.ToInt32(textBoxCount.Text); }
-            set { textBoxCount.Text = value.ToString(); }
+            get { return Convert.ToInt32(textBoxAmount.Text); }
+            set
+            {
+                textBoxAmount.Text = value.ToString();
+            }
         }
-
         public FormDocumentComponent(IComponentLogic logic)
         {
             InitializeComponent();
+         
             List<ComponentViewModel> list = logic.Read(null);
             if (list != null)
             {
@@ -42,16 +43,14 @@ namespace LawFirmView
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxCount.Text))
+            if (string.IsNullOrEmpty(textBoxAmount.Text))
             {
-                MessageBox.Show("Заполните поле Количество", "Ошибка",
-               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxComponent.SelectedValue == null)
             {
-                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             DialogResult = DialogResult.OK;
