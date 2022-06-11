@@ -88,14 +88,14 @@ namespace LawFirmView
             this.toolStripMenuItemComponents.Name = "toolStripMenuItemComponents";
             this.toolStripMenuItemComponents.Size = new System.Drawing.Size(218, 34);
             this.toolStripMenuItemComponents.Text = "Компоненты";
-            this.toolStripMenuItemComponents.Click += new System.EventHandler(this.КомпонентыToolStripMenuItemComponents_Click);
+            this.toolStripMenuItemComponents.Click += new System.EventHandler(this.ToolStripMenuItemComponents_Click);
             // 
             // документыtoollStripMenuItem2ToolStripMenuItemDocuments
             // 
             this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Name = "документыtoollStripMenuItem2ToolStripMenuItemDocuments";
             this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Size = new System.Drawing.Size(218, 34);
             this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Text = "Документы";
-            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Click += new System.EventHandler(this.ДокументыToollStripMenuItemDocuments_Click);
+            this.документыtoollStripMenuItem2ToolStripMenuItemDocuments.Click += new System.EventHandler(this.ToollStripMenuItemDocuments_Click);
             // 
             // ToolStripMenuItemWarehouses
             // 
